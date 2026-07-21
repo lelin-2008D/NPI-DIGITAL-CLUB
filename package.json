@@ -1,0 +1,13 @@
+{
+  "name": "npi-digital-club",
+  "version": "1.0.0",
+  "description": "Premium luxury cinematic website for NPI Digital Club",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0"
+  }
+}

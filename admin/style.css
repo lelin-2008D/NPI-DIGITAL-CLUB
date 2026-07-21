@@ -1,0 +1,837 @@
+/* ==========================================================================
+   NPI DIGITAL CLUB — ADMIN CONSOLE STYLESHEET (LUXURY EDITORIAL THEME)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CORE TOKENS
+   -------------------------------------------------------------------------- */
+:root {
+  --bg-primary: #050505;
+  --bg-card: #111111;
+  --accent-gold: #D4AF37;
+  --accent-gold-sec: #B08D57;
+  --text-white: #F5F5F5;
+  --text-muted: #9A9A9A;
+  --border-color: rgba(212, 175, 55, 0.15);
+  --border-color-glow: rgba(212, 175, 55, 0.4);
+  --red-color: #c62828;
+  
+  --font-sub: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.25s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.admin-body {
+  background-color: var(--bg-primary);
+  color: var(--text-white);
+  font-family: var(--font-body);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Custom Scrollbar for admin */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-gold);
+}
+
+.accent-gold {
+  color: var(--accent-gold);
+}
+
+.space-grotesk {
+  font-family: var(--font-sub);
+}
+
+.space-mono {
+  font-family: var(--font-sub);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.inter {
+  font-family: var(--font-body);
+}
+
+/* --------------------------------------------------------------------------
+   2. AUTH SCREEN / LOGIN PORTAL
+   -------------------------------------------------------------------------- */
+.admin-login-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-primary);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+.admin-login-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.login-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 4.5rem 3.5rem;
+  width: 90%;
+  max-width: 480px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+}
+
+.login-logo-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.logo-symbol {
+  font-family: var(--font-sub);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+  padding: 0 0.4rem;
+  line-height: 1.1;
+}
+
+.logo-txt {
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+}
+
+.login-title {
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.login-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 2.5rem;
+}
+
+.luxury-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.form-group label {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--accent-gold);
+  margin-bottom: 0.4rem;
+}
+
+.form-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-white);
+  padding: 0.7rem 0;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 300;
+  transition: var(--transition-fast);
+}
+
+.input-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--accent-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.form-input:focus ~ .input-line {
+  transform: scaleX(1);
+}
+
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.remember-me input {
+  display: none;
+}
+
+.checkbox-custom {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--border-color);
+  background-color: transparent;
+  display: inline-block;
+  position: relative;
+}
+
+.remember-me input:checked + .checkbox-custom::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--accent-gold);
+  font-size: 0.7rem;
+}
+
+.forgot-pwd {
+  color: var(--accent-gold-sec);
+}
+
+.login-submit-btn {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.login-error-msg {
+  height: 18px;
+  font-size: 0.8rem;
+  color: var(--red-color);
+  text-align: center;
+}
+
+/* Cinematic Button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 1.1rem 2rem;
+  background-color: transparent;
+  color: var(--text-white);
+  border: 1px solid var(--accent-gold);
+  font-family: var(--font-sub);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.btn-text {
+  position: relative;
+  z-index: 2;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--accent-gold);
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.btn:hover::before {
+  transform: translateY(0);
+}
+
+.btn:hover {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+  color: var(--bg-primary) !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. APP CONTAINER LAYOUT (SPLIT SCREEN VIEWPORTS)
+   -------------------------------------------------------------------------- */
+.admin-app-layout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Left Sidebar aside */
+.admin-sidebar {
+  width: 280px;
+  background-color: var(--bg-card);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.sidebar-header {
+  padding: 2.2rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sidebar-header .header-texts {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header .brand {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--text-white);
+}
+
+.sidebar-header .env {
+  font-size: 0.62rem;
+  color: var(--accent-gold-sec);
+}
+
+.sidebar-nav {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.9rem 1.2rem;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-sub);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  border-radius: 2px;
+}
+
+.nav-btn:hover, .nav-btn.active {
+  color: var(--text-white);
+  background-color: rgba(212, 175, 55, 0.04);
+}
+
+.nav-btn.active {
+  border-left: 2px solid var(--accent-gold);
+  padding-left: calc(1.2rem - 2px);
+}
+
+.nav-icon {
+  font-size: 1rem;
+  color: var(--accent-gold-sec);
+}
+
+.nav-btn:hover .nav-icon, .nav-btn.active .nav-icon {
+  color: var(--accent-gold);
+}
+
+.sidebar-footer {
+  padding: 1.8rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.user-name {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-white);
+}
+
+.user-role {
+  font-size: 0.65rem;
+  color: var(--accent-gold);
+}
+
+.logout-btn {
+  padding: 0.6rem 1rem;
+  font-size: 0.7rem;
+  border-color: rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.logout-btn:hover {
+  border-color: var(--red-color);
+}
+.logout-btn::before {
+  background-color: var(--red-color);
+}
+
+/* Main Split View */
+.admin-main-container {
+  flex-grow: 1;
+  display: flex;
+  height: 100%;
+}
+
+/* Left Editor Column */
+.editor-column {
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+  padding: 3rem 4rem;
+  border-right: 1px solid var(--border-color);
+}
+
+.panel {
+  display: none;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.panel.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.panel-title {
+  font-size: 2.2rem;
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+  color: var(--text-white);
+}
+
+.panel-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Right Iframe Preview Column */
+.preview-column {
+  flex: 1.2;
+  height: 100%;
+  background-color: #020202;
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-header {
+  padding: 1.2rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.preview-badge {
+  font-size: 0.68rem;
+  color: var(--accent-gold-sec);
+}
+
+.btn-refresh-preview {
+  font-family: var(--font-sub);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.btn-refresh-preview:hover {
+  color: var(--accent-gold);
+}
+
+.iframe-wrapper {
+  flex-grow: 1;
+  width: 100%;
+  position: relative;
+  background-color: #000;
+}
+
+.iframe-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Responsive Split screen collapse */
+@media (max-width: 1200px) {
+  .preview-column {
+    display: none; /* Hide iframe live preview on smaller layouts to save space */
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. CONSOLE GENERAL UI ELEMENTS
+   -------------------------------------------------------------------------- */
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
+}
+
+.admin-stat-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 1.8rem;
+  text-align: center;
+}
+
+.admin-stat-card .val {
+  display: block;
+  font-family: var(--font-sub);
+  font-size: 2rem;
+  color: var(--accent-gold);
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.admin-stat-card .lbl {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.admin-section-box {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.box-title {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.box-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.8rem;
+}
+
+.btn-group-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.btn-gold-outline, .btn-red-outline {
+  padding: 0.7rem 1.4rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+}
+
+.btn-gold-outline {
+  border: 1px solid var(--accent-gold-sec);
+}
+.btn-gold-outline:hover {
+  border-color: var(--accent-gold);
+}
+
+.btn-red-outline {
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+}
+.btn-red-outline:hover {
+  border-color: var(--red-color);
+  color: var(--red-color);
+}
+.btn-red-outline::before {
+  background-color: var(--red-color);
+}
+
+.file-upload-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.file-upload-wrapper input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.margin-top-2 {
+  margin-top: 2rem;
+}
+
+/* Form Settings Layout */
+.admin-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.admin-input {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-white);
+  padding: 0.9rem 1.2rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 300;
+  width: 100%;
+  transition: var(--transition-fast);
+}
+
+.admin-input:focus {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.05);
+}
+
+.admin-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.field-hint {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+
+.btn-save-changes {
+  padding: 1rem 2rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   5. CRUD LIST TABLE
+   -------------------------------------------------------------------------- */
+.item-list-table {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+.table-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 1.2rem 1.8rem;
+  transition: var(--transition-fast);
+}
+
+.table-row:hover {
+  border-color: var(--accent-gold-sec);
+}
+
+.row-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  max-width: 65%;
+}
+
+.row-title {
+  font-family: var(--font-sub);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-white);
+}
+
+.row-sub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.row-actions-col {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.action-ico-btn {
+  padding: 0.5rem;
+  font-size: 0.72rem;
+  font-family: var(--font-sub);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  border: 1px solid transparent;
+}
+
+.action-ico-btn:hover {
+  color: var(--accent-gold);
+}
+
+.action-ico-btn.btn-delete:hover {
+  color: var(--red-color);
+}
+
+.btn-arrow {
+  font-size: 0.9rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.btn-arrow:hover {
+  border-color: var(--accent-gold-sec);
+}
+
+/* --------------------------------------------------------------------------
+   6. DIALOG POPUPS
+   -------------------------------------------------------------------------- */
+.admin-dialog {
+  border: none;
+  background: transparent;
+  color: inherit;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.admin-dialog-overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(5, 5, 5, 0.94);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10002;
+}
+
+.admin-dialog-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 4rem 3rem;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.dialog-close-btn {
+  position: absolute;
+  top: 2rem;
+  right: 2.2rem;
+  font-size: 2.5rem;
+  color: var(--text-white);
+  cursor: pointer;
+  line-height: 1;
+  transition: var(--transition-fast);
+}
+
+.dialog-close-btn:hover {
+  color: var(--accent-gold);
+}
+
+.dialog-title {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.crud-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.crud-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.crud-checkbox-wrapper input[type="checkbox"] {
+  accent-color: var(--accent-gold);
+  width: 16px;
+  height: 16px;
+}

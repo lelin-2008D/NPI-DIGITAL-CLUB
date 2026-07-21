@@ -1,0 +1,244 @@
+{
+  "settings": {
+    "siteTitle": "NPI Digital Club | Building Digital Innovators",
+    "metaDesc": "Where engineering meets creativity, innovation, technology, and leadership. Explore our projects, workshops, and team at Lalitpur's premier tech community.",
+    "metaKeywords": "NPI, Digital Club, Software Engineering, Design, AI, Lalitpur, Nepal, Web Development",
+    "copyright": "Designed with ❤️ by NPI Digital Club",
+    "theme": {
+      "colorBg": "#050505",
+      "colorCard": "#111111",
+      "colorGold": "#D4AF37",
+      "colorSecondaryGold": "#B08D57",
+      "colorWhite": "#F5F5F5",
+      "colorMuted": "#9A9A9A"
+    }
+  },
+  "hero": {
+    "title": "NPI DIGITAL CLUB",
+    "subtitle": "Building Digital Innovators",
+    "description": "Where engineering meets creativity, innovation, technology, and leadership. Join a premium circle of student builders redefining local software craftsmanship.",
+    "exploreBtn": "Explore the Story",
+    "canvasEnabled": true
+  },
+  "story": {
+    "badge": "OUR GENESIS",
+    "title": "A Legacy of Innovation and Digital Mastery",
+    "mission": "To nurture high-caliber student developers, UI/UX designers, and hardware engineers, building a bridge between engineering studies and global industrial standards.",
+    "vision": "To establish NPI Digital Club as a premier technology hub in Nepal, fostering original software craftsmanship and student-led startup ecosystems.",
+    "purpose": "We offer a collaborative playground where code compiles, wireframes evolve, and real problems meet innovative engineering solutions through pure student ownership.",
+    "history": "Founded as a tight-knit circle of tech enthusiasts, the club has grown into Lalitpur's landmark student organization, launching digital platforms and mentoring hundreds of future developers.",
+    "image": "assets/images/story_hero.jpg",
+    "stats": [
+      { "id": "stat-1", "label": "Active Members", "number": "250", "suffix": "+" },
+      { "id": "stat-2", "label": "Projects Engineered", "number": "35", "suffix": "+" },
+      { "id": "stat-3", "label": "Tech Events Hosted", "number": "50", "suffix": "+" },
+      { "id": "stat-4", "label": "Industry Awards", "number": "12", "suffix": "" },
+      { "id": "stat-5", "label": "Years Active", "number": "5", "suffix": "+" },
+      { "id": "stat-6", "label": "Tech Partners", "number": "15", "suffix": "+" }
+    ]
+  },
+  "whatWeDo": {
+    "badge": "OUR CRAFT",
+    "title": "Shaping the Frontiers of Modern Technology",
+    "description": "We specialize in modern engineering verticals, cultivating technical execution with high-end aesthetic sensibilities.",
+    "cards": [
+      {
+        "id": "do-1",
+        "title": "Web Development",
+        "desc": "Architecting clean, semantic code with rich visuals and smooth responsive layout mechanics.",
+        "icon": "⚡"
+      },
+      {
+        "id": "do-2",
+        "title": "Artificial Intelligence",
+        "desc": "Training models, exploring data analytics, and implementing smart computer vision agents.",
+        "icon": "🤖"
+      },
+      {
+        "id": "do-3",
+        "title": "UI/UX Design",
+        "desc": "Creating modern typography scales, color hierarchies, dynamic user flows, and wireframes.",
+        "icon": "🎨"
+      },
+      {
+        "id": "do-4",
+        "title": "Hackathons & Events",
+        "desc": "Organizing 24-hour sprints to build software that addresses real-world societal problems.",
+        "icon": "🏆"
+      },
+      {
+        "id": "do-5",
+        "title": "Open Source",
+        "desc": "Contributing to public repositories and managing collaborative toolkits on GitHub.",
+        "icon": "🌐"
+      },
+      {
+        "id": "do-6",
+        "title": "Robotics Collaboration",
+        "desc": "Integrating Arduino controllers, sensor matrices, and custom micro-controllers with web tech.",
+        "icon": "🔧"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "proj-1",
+      "title": "SmartCampus Hub",
+      "desc": "An integrated, cloud-native resource scheduling portal facilitating automated lab slot allocation, library queues, and real-time announcements for engineering students.",
+      "category": "Web Architecture",
+      "year": "2026",
+      "image": "assets/images/project_smartcampus.jpg",
+      "link": "https://github.com/npi-digital/smart-campus",
+      "featured": true
+    },
+    {
+      "id": "proj-2",
+      "title": "AutoGrow Soil Matrix",
+      "desc": "An automated agricultural moisture-controller system utilizing ESP8266 transceivers, local web sockets, and high-precision capacitive sensor probes.",
+      "category": "IoT & Hardware",
+      "year": "2025",
+      "image": "assets/images/project_autogrow.jpg",
+      "link": "https://github.com/npi-digital/autogrow-iot",
+      "featured": true
+    },
+    {
+      "id": "proj-3",
+      "title": "NPI BusTrack Mobile",
+      "desc": "A premium tracking application rendering live GPS data streams of college buses onto a vector map to assist students with schedule management.",
+      "category": "Mobile Systems",
+      "year": "2026",
+      "image": "assets/images/project_bustrack.jpg",
+      "link": "https://github.com/npi-digital/bustrack-mobile",
+      "featured": true
+    }
+  ],
+  "timeline": [
+    {
+      "id": "time-1",
+      "date": "December 2025",
+      "title": "Engineering Celebration Day",
+      "desc": "Showcasing senior software and hardware design prototypes to local technology recruiters.",
+      "location": "Main Auditorium"
+    },
+    {
+      "id": "time-2",
+      "date": "February 2026",
+      "title": "Innovative Pitch Night",
+      "desc": "A high-stakes startup pitch competition judged by regional venture partners.",
+      "location": "Club Sandbox Studio"
+    },
+    {
+      "id": "time-3",
+      "date": "May 2026",
+      "title": "NPI DevHack 24h Sprint",
+      "desc": "A 24-hour hackathon focusing on AI agents that improve local environmental quality.",
+      "location": "Engineering Block C"
+    },
+    {
+      "id": "time-4",
+      "date": "August 2026",
+      "title": "Figma Systems Masterclass",
+      "desc": "Advanced auto-layouts, web token configurations, and interaction designs.",
+      "location": "Main Computer Lab"
+    }
+  ],
+  "team": [
+    {
+      "id": "team-1",
+      "name": "Sanjan Shrestha",
+      "role": "President & Technical Director",
+      "bio": "Specializes in high-performance full-stack javascript architectures, system design, and open-source infrastructure.",
+      "image": "assets/images/team_member.jpg",
+      "github": "https://github.com",
+      "linkedin": "https://linkedin.com",
+      "facebook": "https://facebook.com",
+      "email": "president@npidigital.org"
+    },
+    {
+      "id": "team-2",
+      "name": "Aarav KC",
+      "role": "Vice President & Creative Lead",
+      "bio": "Directs design strategies, crafting vector systems, premium typography grids, and interactive user experiences.",
+      "image": "assets/images/team_member.jpg",
+      "github": "https://github.com",
+      "linkedin": "https://linkedin.com",
+      "facebook": "https://facebook.com",
+      "email": "vicepresident@npidigital.org"
+    },
+    {
+      "id": "team-3",
+      "name": "Elina Karki",
+      "role": "Secretary & Operations Head",
+      "bio": "Manages communication pipelines, coordinates workshops, and drafts structural software documentations.",
+      "image": "assets/images/team_member.jpg",
+      "github": "https://github.com",
+      "linkedin": "https://linkedin.com",
+      "facebook": "https://facebook.com",
+      "email": "secretary@npidigital.org"
+    },
+    {
+      "id": "team-4",
+      "name": "Niranjan Joshi",
+      "role": "Treasurer & IoT Lead",
+      "bio": "Focuses on firmware programming, hardware assembly, and power efficiency analysis in embedded systems.",
+      "image": "assets/images/team_member.jpg",
+      "github": "https://github.com",
+      "linkedin": "https://linkedin.com",
+      "facebook": "https://facebook.com",
+      "email": "treasurer@npidigital.org"
+    }
+  ],
+  "gallery": [
+    {
+      "id": "gal-1",
+      "image": "assets/images/gallery_tech_event.jpg",
+      "caption": "Coding session inside the Sandbox Studio",
+      "category": "Workshops"
+    },
+    {
+      "id": "gal-2",
+      "image": "assets/images/story_hero.jpg",
+      "caption": "Brainstorming wireframes on the display deck",
+      "category": "Design"
+    },
+    {
+      "id": "gal-3",
+      "image": "assets/images/project_smartcampus.jpg",
+      "caption": "Showcasing SmartCampus Hub at the Expo",
+      "category": "Exhibitions"
+    },
+    {
+      "id": "gal-4",
+      "image": "assets/images/project_autogrow.jpg",
+      "caption": "Hardware testing of AutoGrow circuits",
+      "category": "Hardware"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "test-1",
+      "name": "Bibek Chaudhary",
+      "role": "CS Alumnus (Software Engineer at F1Soft)",
+      "review": "NPI Digital Club gave me real project workflows that classes couldn't teach. The teamwork, the late-night debugging, and the mentorship shaped my career."
+    },
+    {
+      "id": "test-2",
+      "name": "Priyanka Shrestha",
+      "role": "B.E. Computer Science Student",
+      "review": "The Figma masterclasses and the hackathons completely transformed how I approach design and engineering. It's a gold mine for growth."
+    }
+  ],
+  "quote": {
+    "text": "Software development is not just about typing syntax. It is the architectural discipline of materializing imagination through clean, elegant structures.",
+    "author": "NPI Digital Club Leadership"
+  },
+  "contact": {
+    "email": "info@npidigital.org",
+    "phone": "+977-1-5555555",
+    "address": "NPI Campus, Lalitpur, Nepal",
+    "mapCoords": {
+      "lat": "27.6715",
+      "lng": "85.3125"
+    }
+  }
+}

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NPI Digital Club | Admin Dashboard</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Style -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-body">
+
+  <!-- Custom Cinematic Cursor -->
+  <div class="custom-cursor" id="custom-cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- Auth Screen (Visible by default if not logged in) -->
+  <div class="admin-login-screen" id="login-screen">
+    <div class="login-card">
+      <div class="login-logo-box">
+        <span class="logo-symbol">N</span>
+        <span class="logo-txt space-grotesk">NPI DIGITAL <span class="accent-gold">ADMIN</span></span>
+      </div>
+      <h2 class="login-title">Access Portal</h2>
+      <p class="login-subtitle">Authenticate using administrative credentials.</p>
+      
+      <form class="login-form luxury-form" id="login-form">
+        <div class="form-group">
+          <label for="login-email" class="space-grotesk">EMAIL ADDRESS</label>
+          <input type="email" id="login-email" class="form-input" placeholder="admin@npidigital.org" value="admin@npidigital.org" required>
+          <span class="input-line"></span>
+        </div>
+        <div class="form-group">
+          <label for="login-password" class="space-grotesk">SECURITY PASSWORD</label>
+          <input type="password" id="login-password" class="form-input" placeholder="••••••••" value="digitalpass" required>
+          <span class="input-line"></span>
+        </div>
+        <div class="login-options">
+          <label class="remember-me inter">
+            <input type="checkbox" id="remember-me">
+            <span class="checkbox-custom"></span> Remember Session
+          </label>
+          <a href="#" class="forgot-pwd space-grotesk" onclick="alert('Password Hint: It is default configured as \'digitalpass\'')">Forgot Key?</a>
+        </div>
+        <button type="submit" class="btn btn-magnetic login-submit-btn">
+          <span class="btn-text">Unlock Dashboard</span>
+        </button>
+        <div class="login-error-msg space-grotesk" id="login-feedback"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Application (Hidden by default, shown upon successful login) -->
+  <div class="admin-app-layout" id="admin-app">
+    
+    <!-- Left Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-header">
+        <span class="logo-symbol">N</span>
+        <div class="header-texts">
+          <span class="brand space-grotesk">NPI DIGITAL</span>
+          <span class="env space-mono">CONSOLE v1.0</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Console Modules">
+        <button class="nav-btn active" data-target="dashboard-panel">
+          <span class="nav-icon">⚃</span> Dashboard & Data
+        </button>
+        <button class="nav-btn" data-target="hero-panel">
+          <span class="nav-icon">⚡</span> Hero Section
+        </button>
+        <button class="nav-btn" data-target="story-panel">
+          <span class="nav-icon">📖</span> Our Story
+        </button>
+        <button class="nav-btn" data-target="services-panel">
+          <span class="nav-icon">🛠</span> Services / Craft
+        </button>
+        <button class="nav-btn" data-target="projects-panel">
+          <span class="nav-icon">📁</span> Project Portfolio
+        </button>
+        <button class="nav-btn" data-target="events-panel">
+          <span class="nav-icon">📅</span> Roadmap Timeline
+        </button>
+        <button class="nav-btn" data-target="gallery-panel">
+          <span class="nav-icon">📸</span> Photo Gallery
+        </button>
+        <button class="nav-btn" data-target="team-panel">
+          <span class="nav-icon">👥</span> Executive Committee
+        </button>
+        <button class="nav-btn" data-target="testimonials-panel">
+          <span class="nav-icon">💬</span> Testimonials
+        </button>
+        <button class="nav-btn" data-target="contact-panel">
+          <span class="nav-icon">✉</span> Contact Details
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <span class="user-name inter">Administrator</span>
+          <span class="user-role space-mono">ROOT PRIVILEGES</span>
+        </div>
+        <button class="logout-btn btn-magnetic" id="logout-btn">
+          <span class="btn-text">LOCK CONSOLE</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Dynamic Work Area -->
+    <main class="admin-main-container">
+      
+      <!-- Split-Screen Editor Content Column -->
+      <section class="editor-column">
+        
+        <!-- MODULE 1: GENERAL DASHBOARD & DATA TOOLS -->
+        <div class="panel active" id="dashboard-panel">
+          <h1 class="panel-title space-grotesk">Console Core</h1>
+          <p class="panel-desc">Manage site settings, export content models, restore data backups, and verify statistics.</p>
+
+          <!-- Stat Overview Cards -->
+          <div class="admin-stats-grid">
+            <div class="admin-stat-card">
+              <span class="val" id="stat-proj-count">0</span>
+              <span class="lbl space-grotesk">Projects</span>
+            </div>
+            <div class="admin-stat-card">
+              <span class="val" id="stat-event-count">0</span>
+              <span class="lbl space-grotesk">Events</span>
+            </div>
+            <div class="admin-stat-card">
+              <span class="val" id="stat-team-count">0</span>
+              <span class="lbl space-grotesk">Committee</span>
+            </div>
+            <div class="admin-stat-card">
+              <span class="val" id="stat-gallery-count">0</span>
+              <span class="lbl space-grotesk">Snaps</span>
+            </div>
+          </div>
+
+          <!-- Backup & Recovery Matrix -->
+          <div class="admin-section-box">
+            <h3 class="box-title space-grotesk">Data Operations</h3>
+            <p class="box-desc">Export database snapshot, restore backup JSON or reset state back to defaults.</p>
+            <div class="btn-group-row">
+              <button class="btn btn-gold-outline" id="export-db-btn">Export Backup JSON</button>
+              <button class="btn btn-gold-outline file-upload-wrapper">
+                Import Backup JSON
+                <input type="file" id="import-db-file" accept=".json">
+              </button>
+              <button class="btn btn-red-outline" id="reset-db-btn">Reset to Defaults</button>
+            </div>
+          </div>
+
+          <!-- Site Metadata Settings Form -->
+          <form id="form-site-settings" class="admin-form-container">
+            <h3 class="box-title space-grotesk">SEO Settings & Metadata</h3>
+            
+            <div class="form-group">
+              <label for="setting-site-title">SITE HEADER TITLE</label>
+              <input type="text" id="setting-site-title" class="admin-input" required>
+            </div>
+            <div class="form-group">
+              <label for="setting-meta-desc">META DESCRIPTION</label>
+              <textarea id="setting-meta-desc" class="admin-input admin-textarea" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="setting-meta-keys">KEYWORDS (COMMA SEPARATED)</label>
+              <input type="text" id="setting-meta-keys" class="admin-input" required>
+            </div>
+            <div class="form-group">
+              <label for="setting-copyright">COPYRIGHT TEXT</label>
+              <input type="text" id="setting-copyright" class="admin-input" required>
+            </div>
+
+            <button type="submit" class="btn btn-save-changes">Save Core Settings</button>
+          </form>
+        </div>
+
+        <!-- MODULE 2: HERO EDIT PANEL -->
+        <div class="panel" id="hero-panel">
+          <h1 class="panel-title space-grotesk">Edit Hero Section</h1>
+          <p class="panel-desc">Modify the central focal texts displaying in the immersive 100vh hero deck.</p>
+
+          <form id="form-hero-settings" class="admin-form-container">
+            <div class="form-group">
+              <label for="hero-title-input">MAIN HEADING</label>
+              <input type="text" id="hero-title-input" class="admin-input" required>
+            </div>
+            <div class="form-group">
+              <label for="hero-subtitle-input">SUB-TITLE ACCENT</label>
+              <input type="text" id="hero-subtitle-input" class="admin-input" required>
+            </div>
+            <div class="form-group">
+              <label for="hero-desc-input">DESCRIPTION TEXT</label>
+              <textarea id="hero-desc-input" class="admin-input admin-textarea" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="hero-btn-input">ACTION BUTTON LABEL</label>
+              <input type="text" id="hero-btn-input" class="admin-input" required>
+            </div>
+
+            <button type="submit" class="btn btn-save-changes">Commit Hero Edits</button>
+          </form>
+        </div>
+
+        <!-- MODULE 3: OUR STORY EDIT PANEL -->
+        <div class="panel" id="story-panel">
+          <h1 class="panel-title space-grotesk">Edit Our Story</h1>
+          <p class="panel-desc">Update corporate mission statements, club genesis details, and editorial visual files.</p>
+
+          <form id="form-story-settings" class="admin-form-container">
+            <div class="form-group">
+              <label for="story-badge-input">SECTION BADGE</label>
+              <input type="text" id="story-badge-input" class="admin-input" required>
+            </div>
+            <div class="form-group">
+              <label for="story-title-input">SECTION TITLE</label>
+              <input type="text" id="story-title-input" class="admin-input" required>
+            </div>
+            <div class="form-group">
+              <label for="story-mission-input">MISSION STATEMENT</label>
+              <textarea id="story-mission-input" class="admin-input admin-textarea" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="story-vision-input">VISION STATEMENT</label>
+              <textarea id="story-vision-input" class="admin-input admin-textarea" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="story-purpose-input">CLUB PURPOSE</label>
+              <textarea id="story-purpose-input" class="admin-input admin-textarea" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="story-history-input">CLUB HISTORY</label>
+              <textarea id="story-history-input" class="admin-input admin-textarea" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="story-image-input">EDITORIAL PHOTO ASSET PATH</label>
+              <input type="text" id="story-image-input" class="admin-input" required>
+              <span class="field-hint">Usually points to `assets/images/story_hero.jpg`</span>
+            </div>
+
+            <button type="submit" class="btn btn-save-changes">Commit Story Edits</button>
+          </form>
+        </div>
+
+        <!-- MODULE 4: SERVICES EDIT PANEL -->
+        <div class="panel" id="services-panel">
+          <h1 class="panel-title space-grotesk">Services Roster</h1>
+          <p class="panel-desc">Configure the structural technology stack verticals representing what the club offers.</p>
+
+          <form id="form-services-settings" class="admin-form-container">
+            <div class="form-group">
+              <label for="services-badge-input">SECTION BADGE</label>
+              <input type="text" id="services-badge-input" class="admin-input" required>
+            </div>
+            <div class="form-group">
+              <label for="services-title-input">SECTION TITLE</label>
+              <input type="text" id="services-title-input" class="admin-input" required>
+            </div>
+            <div class="form-group">
+              <label for="services-desc-input">DESCRIPTION TEXT</label>
+              <textarea id="services-desc-input" class="admin-input admin-textarea" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-save-changes">Update Services Header</button>
+          </form>
+
+          <div class="admin-section-box margin-top-2">
+            <h3 class="box-title space-grotesk">Service Cards List</h3>
+            <div class="item-list-table" id="services-cards-list">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <!-- MODULE 5: PROJECTS CRUD PANEL -->
+        <div class="panel" id="projects-panel">
+          <div class="panel-header-row">
+            <h1 class="panel-title space-grotesk">Projects Portfolio</h1>
+            <button class="btn btn-small btn-gold-outline" onclick="window.showCRUDModal('project', null)">+ Add Project</button>
+          </div>
+          <p class="panel-desc">Review, edit, delete, and reorder student-built software applications showing on the site.</p>
+
+          <div class="item-list-table" id="projects-list-table">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- MODULE 6: EVENTS CRUD PANEL -->
+        <div class="panel" id="events-panel">
+          <div class="panel-header-row">
+            <h1 class="panel-title space-grotesk">Milestones Timeline</h1>
+            <button class="btn btn-small btn-gold-outline" onclick="window.showCRUDModal('event', null)">+ Add Event</button>
+          </div>
+          <p class="panel-desc">Manage historical markers and upcoming workshop calendars inside the horizontal scroll.</p>
+
+          <div class="item-list-table" id="events-list-table">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- MODULE 7: GALLERY CRUD PANEL -->
+        <div class="panel" id="gallery-panel">
+          <div class="panel-header-row">
+            <h1 class="panel-title space-grotesk">Photo Gallery Manager</h1>
+            <button class="btn btn-small btn-gold-outline" onclick="window.showCRUDModal('gallery', null)">+ Add Snap</button>
+          </div>
+          <p class="panel-desc">Upload mockups, configure masonry captions, and assign categories for lightbox views.</p>
+
+          <div class="item-list-table" id="gallery-list-table">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- MODULE 8: TEAM CRUD PANEL -->
+        <div class="panel" id="team-panel">
+          <div class="panel-header-row">
+            <h1 class="panel-title space-grotesk">Executive Committee</h1>
+            <button class="btn btn-small btn-gold-outline" onclick="window.showCRUDModal('team', null)">+ Add Member</button>
+          </div>
+          <p class="panel-desc">Manage official positions, portfolio links, and descriptive bios of leading student officers.</p>
+
+          <div class="item-list-table" id="team-list-table">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- MODULE 9: TESTIMONIALS CRUD PANEL -->
+        <div class="panel" id="testimonials-panel">
+          <div class="panel-header-row">
+            <h1 class="panel-title space-grotesk">Student Reviews</h1>
+            <button class="btn btn-small btn-gold-outline" onclick="window.showCRUDModal('testimonial', null)">+ Add Review</button>
+          </div>
+          <p class="panel-desc">Review and curate testimonials detailing learning achievements from members and alumni.</p>
+
+          <div class="item-list-table" id="testimonials-list-table">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- MODULE 10: CONTACT EDIT PANEL -->
+        <div class="panel" id="contact-panel">
+          <h1 class="panel-title space-grotesk">Contact Details & Quote</h1>
+          <p class="panel-desc">Edit channels of communication (mail/phone/coords) and quote elements shown at the footer.</p>
+
+          <form id="form-contact-settings" class="admin-form-container">
+            <div class="form-group">
+              <label for="contact-email-input">INQUIRY EMAIL</label>
+              <input type="email" id="contact-email-input" class="admin-input" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-phone-input">TELEPHONE</label>
+              <input type="text" id="contact-phone-input" class="admin-input" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-address-input">CAMPUS STREET ADDRESS</label>
+              <input type="text" id="contact-address-input" class="admin-input" required>
+            </div>
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="contact-lat-input">LATITUDE</label>
+                <input type="text" id="contact-lat-input" class="admin-input" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-lng-input">LONGITUDE</label>
+                <input type="text" id="contact-lng-input" class="admin-input" required>
+              </div>
+            </div>
+
+            <h3 class="box-title space-grotesk margin-top-2">Inspirational Quote Section</h3>
+            <div class="form-group">
+              <label for="quote-text-input">QUOTE PHRASE</label>
+              <textarea id="quote-text-input" class="admin-input admin-textarea" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="quote-author-input">QUOTE AUTHOR SIGNATURE</label>
+              <input type="text" id="quote-author-input" class="admin-input" required>
+            </div>
+
+            <button type="submit" class="btn btn-save-changes">Save Contact & Quote Details</button>
+          </form>
+        </div>
+
+      </section>
+
+      <!-- Right Live Preview Column (Professional double column split layout!) -->
+      <section class="preview-column">
+        <div class="preview-header">
+          <span class="preview-badge space-mono">LIVE PAGE INTERACTIVE PREVIEW</span>
+          <button class="btn-refresh-preview" id="refresh-preview-btn">⟳ Force Reload</button>
+        </div>
+        <div class="iframe-wrapper">
+          <!-- Connects directly to main site index.html -->
+          <iframe src="../index.html" id="preview-iframe" title="Client Website Preview"></iframe>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- DYNAMIC CRUD ITEM MODAL (For adding/editing items dynamically) -->
+  <dialog class="admin-dialog" id="crud-dialog">
+    <div class="admin-dialog-overlay">
+      <div class="admin-dialog-card">
+        <button class="dialog-close-btn" id="crud-close-btn">&times;</button>
+        <h2 class="dialog-title space-grotesk" id="crud-title">Add New Item</h2>
+        
+        <form class="crud-form" id="crud-form-element">
+          <!-- ID trackers -->
+          <input type="hidden" id="crud-item-id">
+          <input type="hidden" id="crud-item-type">
+
+          <div id="dynamic-form-fields">
+            <!-- Dynamically injected field inputs depending on entity type -->
+          </div>
+
+          <div class="dialog-actions">
+            <button type="submit" class="btn btn-save-changes btn-full">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Control Script -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>
