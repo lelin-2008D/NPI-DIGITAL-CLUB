@@ -1,495 +1,844 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Dynamic SEO Meta Tags (Will be replaced by ContentManager) -->
-  <title>NPI Digital Club | Building Digital Innovators</title>
-  <meta name="description" content="Where engineering meets creativity, innovation, technology, and leadership. Explore our projects, workshops, and team at Lalitpur's premier tech community.">
-  <meta name="keywords" content="NPI, Digital Club, Software Engineering, Design, AI, Lalitpur, Nepal, Web Development">
-  
-  <!-- Open Graph -->
-  <meta property="og:title" content="NPI Digital Club | Building Digital Innovators">
-  <meta property="og:description" content="Where engineering meets creativity, innovation, technology, and leadership.">
-  <meta property="og:type" content="website">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Dynamic SEO Meta Tags (Will be replaced by ContentManager) -->
+    <title>NPI Digital Club | Building Digital Innovators</title>
+    <meta
+      name="description"
+      content="Where engineering meets creativity, innovation, technology, and leadership. Explore our projects, workshops, and team at Lalitpur's premier tech community."
+    />
+    <meta
+      name="keywords"
+      content="NPI, Digital Club, Software Engineering, Design, AI, Lalitpur, Nepal, Web Development"
+    />
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="NPI Digital Club | Building Digital Innovators"
+    />
+    <meta
+      property="og:description"
+      content="Where engineering meets creativity, innovation, technology, and leadership."
+    />
+    <meta property="og:type" content="website" />
 
-  <!-- Custom Cinematic Cursor -->
-  <div class="custom-cursor" id="custom-cursor" aria-hidden="true">
-    <div class="cursor-dot"></div>
-    <div class="cursor-ring"></div>
-  </div>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Luxury Preloader -->
-  <div class="luxury-loader" id="loader">
-    <div class="loader-bg-slice"></div>
-    <div class="loader-content">
-      <div class="loader-logo-container">
-        <!-- Handcrafted original geometric svg logo -->
-        <svg class="loader-logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" class="logo-polygon" stroke="#D4AF37" stroke-width="4" stroke-linejoin="round"/>
-          <line x1="50" y1="5" x2="50" y2="95" class="logo-line logo-line-center" stroke="#D4AF37" stroke-width="2"/>
-          <line x1="5" y1="27.5" x2="95" y2="72.5" class="logo-line" stroke="#B08D57" stroke-width="1.5" stroke-dasharray="4 4"/>
-          <line x1="95" y1="27.5" x2="5" y2="72.5" class="logo-line" stroke="#B08D57" stroke-width="1.5" stroke-dasharray="4 4"/>
-          <circle cx="50" cy="50" r="15" class="logo-circle" stroke="#D4AF37" stroke-width="3" fill="#050505"/>
-        </svg>
-      </div>
-      <div class="loader-info">
-        <h2 class="loader-title">NPI DIGITAL CLUB</h2>
-        <div class="loader-progress-track">
-          <div class="loader-progress-bar" id="loader-bar"></div>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Custom Cinematic Cursor -->
+    <div class="custom-cursor" id="custom-cursor" aria-hidden="true">
+      <div class="cursor-dot"></div>
+      <div class="cursor-ring"></div>
+    </div>
+
+    <!-- Luxury Preloader -->
+    <div class="luxury-loader" id="loader">
+      <div class="loader-bg-slice"></div>
+      <div class="loader-content">
+        <div class="loader-logo-container">
+          <!-- Handcrafted original geometric svg logo -->
+          <svg
+            class="loader-logo-svg"
+            viewBox="0 0 100 100"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <polygon
+              points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5"
+              class="logo-polygon"
+              stroke="#D4AF37"
+              stroke-width="4"
+              stroke-linejoin="round"
+            />
+            <line
+              x1="50"
+              y1="5"
+              x2="50"
+              y2="95"
+              class="logo-line logo-line-center"
+              stroke="#D4AF37"
+              stroke-width="2"
+            />
+            <line
+              x1="5"
+              y1="27.5"
+              x2="95"
+              y2="72.5"
+              class="logo-line"
+              stroke="#B08D57"
+              stroke-width="1.5"
+              stroke-dasharray="4 4"
+            />
+            <line
+              x1="95"
+              y1="27.5"
+              x2="5"
+              y2="72.5"
+              class="logo-line"
+              stroke="#B08D57"
+              stroke-width="1.5"
+              stroke-dasharray="4 4"
+            />
+            <circle
+              cx="50"
+              cy="50"
+              r="15"
+              class="logo-circle"
+              stroke="#D4AF37"
+              stroke-width="3"
+              fill="#050505"
+            />
+          </svg>
         </div>
-        <div class="loader-percentage" id="loader-perc">0%</div>
+        <div class="loader-info">
+          <h2 class="loader-title">NPI DIGITAL CLUB</h2>
+          <div class="loader-progress-track">
+            <div class="loader-progress-bar" id="loader-bar"></div>
+          </div>
+          <div class="loader-percentage" id="loader-perc">0%</div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- transparent navigation bar -->
-  <header class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="#" class="nav-logo" id="nav-logo-link" aria-label="NPI Digital Club Home">
-        <span class="logo-symbol">N</span>
-        <span class="logo-text">NPI <span class="accent-gold">DIGITAL</span></span>
-      </a>
+    <!-- transparent navigation bar -->
+    <header class="navbar" id="navbar">
+      <div class="nav-container">
+        <a
+          href="#"
+          class="nav-logo"
+          id="nav-logo-link"
+          aria-label="NPI Digital Club Home"
+        >
+          <span class="logo-symbol">N</span>
+          <span class="logo-text"
+            >NPI <span class="accent-gold">DIGITAL CLUB</span></span
+          >
+        </a>
 
-      <!-- Desktop Navigation Menu -->
-      <nav class="nav-links" id="nav-links" aria-label="Main Navigation">
-        <a href="#hero" class="nav-item active" id="nav-link-home">Home</a>
-        <a href="#story" class="nav-item" id="nav-link-story">Story</a>
-        <a href="#what-we-do" class="nav-item" id="nav-link-do">Craft</a>
-        <a href="#projects" class="nav-item" id="nav-link-projects">Projects</a>
-        <a href="#timeline" class="nav-item" id="nav-link-timeline">Timeline</a>
-        <a href="#team" class="nav-item" id="nav-link-team">Team</a>
-        <a href="#gallery" class="nav-item" id="nav-link-gallery">Gallery</a>
-        <a href="#contact" class="nav-item" id="nav-link-contact">Contact</a>
-        <a href="./admin/index.html" class="nav-item nav-btn-gold" id="nav-link-admin">Dashboard</a>
-      </nav>
+        <!-- Desktop Navigation Menu -->
+        <nav class="nav-links" id="nav-links" aria-label="Main Navigation">
+          <a href="#hero" class="nav-item active" id="nav-link-home">Home</a>
+          <a href="#story" class="nav-item" id="nav-link-story">Story</a>
+          <a href="#what-we-do" class="nav-item" id="nav-link-do">Craft</a>
+          <a href="#projects" class="nav-item" id="nav-link-projects"
+            >Projects</a
+          >
+          <a href="#timeline" class="nav-item" id="nav-link-timeline"
+            >Timeline</a
+          >
+          <a href="#team" class="nav-item" id="nav-link-team">Team</a>
+          <a href="#gallery" class="nav-item" id="nav-link-gallery">Gallery</a>
+          <a href="#contact" class="nav-item" id="nav-link-contact">Contact</a>
+          <a
+            href="./admin/index.html"
+            class="nav-item nav-btn-gold"
+            id="nav-link-admin"
+            >Dashboard</a
+          >
+        </nav>
 
-      <!-- Hamburger button for mobile -->
-      <button class="hamburger-menu" id="hamburger-btn" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="nav-links">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
-    </div>
-  </header>
+        <!-- Hamburger button for mobile -->
+        <button
+          class="hamburger-menu"
+          id="hamburger-btn"
+          aria-label="Toggle Navigation Menu"
+          aria-expanded="false"
+          aria-controls="nav-links"
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </header>
 
-  <!-- Main Scroll Container -->
-  <main id="scroll-container">
+    <!-- Main Scroll Container -->
+    <main id="scroll-container">
+      <!-- Hero Section (100vh) -->
+      <section class="hero-section" id="hero">
+        <!-- Interactive Generative Canvas -->
+        <canvas id="hero-canvas" class="hero-canvas"></canvas>
+        <div class="hero-overlay"></div>
 
-    <!-- Hero Section (100vh) -->
-    <section class="hero-section" id="hero">
-      <!-- Interactive Generative Canvas -->
-      <canvas id="hero-canvas" class="hero-canvas"></canvas>
-      <div class="hero-overlay"></div>
-      
-      <div class="hero-wrapper">
-        <div class="hero-content text-reveal">
-          <p class="hero-badge space-mono" id="dynamic-hero-badge">INNOVATION • ENGINEERING</p>
-          <h1 class="hero-title cormorant" id="dynamic-hero-title">NPI DIGITAL CLUB</h1>
-          <h2 class="hero-subtitle space-grotesk accent-gold" id="dynamic-hero-subtitle">Building Digital Innovators</h2>
-          <p class="hero-desc inter" id="dynamic-hero-desc">
-            Where engineering meets creativity, innovation, technology, and leadership.
-          </p>
-          <div class="hero-cta-wrapper">
-            <a href="#story" class="btn btn-magnetic" id="dynamic-hero-btn">
-              <span class="btn-text">Explore Story</span>
+        <div class="hero-wrapper">
+          <div class="hero-content text-reveal">
+            <p class="hero-badge space-mono" id="dynamic-hero-badge">
+              INNOVATION • ENGINEERING
+            </p>
+            <h1 class="hero-title cormorant" id="dynamic-hero-title">
+              NPI DIGITAL CLUB
+            </h1>
+            <h2
+              class="hero-subtitle space-grotesk accent-gold"
+              id="dynamic-hero-subtitle"
+            >
+              Building Digital Innovators
+            </h2>
+            <p class="hero-desc inter" id="dynamic-hero-desc">
+              Where engineering meets creativity, innovation, technology, and
+              leadership.
+            </p>
+            <div class="hero-cta-wrapper">
+              <a href="#story" class="btn btn-magnetic" id="dynamic-hero-btn">
+                <span class="btn-text">Explore Story</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Animated scroll indicator -->
+        <div class="scroll-indicator" id="scroll-indicator">
+          <span class="scroll-text space-grotesk">SCROLL TO DISCOVER</span>
+          <div class="scroll-line">
+            <div class="scroll-line-fill"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Our Story Section -->
+      <section class="story-section section-padding" id="story">
+        <div class="section-container">
+          <div class="editorial-grid">
+            <!-- Text Columns -->
+            <div class="story-text-wrapper reveal-fade-up">
+              <span class="editorial-badge space-grotesk" id="story-badge"
+                >OUR STORY</span
+              >
+              <h2 class="section-title cormorant" id="story-title">
+                A Legacy of Innovation & Digital Mastery
+              </h2>
+
+              <div class="story-p-group">
+                <div class="story-block">
+                  <h4 class="block-title space-grotesk">OUR MISSION</h4>
+                  <p class="inter" id="story-mission">
+                    To nurture high-caliber student developers, UI/UX designers,
+                    and hardware engineers...
+                  </p>
+                </div>
+                <div class="story-block">
+                  <h4 class="block-title space-grotesk">OUR VISION</h4>
+                  <p class="inter" id="story-vision">
+                    To establish NPI Digital Club as a premier technology hub...
+                  </p>
+                </div>
+                <div class="story-block">
+                  <h4 class="block-title space-grotesk">OUR PURPOSE</h4>
+                  <p class="inter" id="story-purpose">
+                    We offer a collaborative playground where code compiles...
+                  </p>
+                </div>
+                <div class="story-block">
+                  <h4 class="block-title space-grotesk">OUR HISTORY</h4>
+                  <p class="inter" id="story-history">
+                    Founded as a tight-knit circle of tech enthusiasts...
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Image Column with Parallax Reveal -->
+            <div class="story-img-wrapper reveal-mask-right">
+              <div class="parallax-img-container">
+                <img
+                  src=""
+                  alt="NPI Digital Club Editorial Artwork"
+                  class="parallax-img"
+                  id="story-image"
+                />
+                <div class="parallax-overlay"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- What We Do / Services Section -->
+      <section class="services-section section-padding" id="what-we-do">
+        <div class="section-container">
+          <div class="section-header reveal-fade-up">
+            <span class="editorial-badge space-grotesk" id="services-badge"
+              >OUR CRAFT</span
+            >
+            <h2 class="section-title cormorant" id="services-title">
+              Shaping the Frontiers of Modern Technology
+            </h2>
+            <p class="section-desc inter" id="services-desc">
+              We specialize in modern engineering verticals, cultivating
+              technical execution with high-end aesthetic sensibilities.
+            </p>
+          </div>
+
+          <!-- Dynamic Services Grid -->
+          <div class="services-grid" id="services-grid-container">
+            <!-- Dynamically loaded -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Projects Section -->
+      <section class="projects-section section-padding" id="projects">
+        <div class="section-container">
+          <div class="section-header reveal-fade-up">
+            <span class="editorial-badge space-grotesk">PORTFOLIO</span>
+            <h2 class="section-title cormorant">Featured Masterpieces</h2>
+            <p class="section-desc inter">
+              Explore premium projects engineered, coded, and designed by our
+              students.
+            </p>
+          </div>
+
+          <!-- Dynamic Projects Container -->
+          <div class="projects-showcase-container" id="projects-container">
+            <!-- Dynamically loaded -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Event Timeline Section -->
+      <section class="timeline-section section-padding" id="timeline">
+        <div class="section-container">
+          <div class="section-header reveal-fade-up">
+            <span class="editorial-badge space-grotesk">ROADMAP</span>
+            <h2 class="section-title cormorant">Chronicles of Engagement</h2>
+            <p class="section-desc inter">
+              Take a look at our events, workshops, pitch nights, and upcoming
+              engineering benchmarks.
+            </p>
+          </div>
+
+          <!-- Animated Drag-Friendly Horizontal Timeline -->
+          <div class="timeline-wrapper reveal-fade-up">
+            <div class="timeline-drag-indicator space-mono">
+              <span class="drag-icon">←</span> DRAG TO EXPLORE TIMELINE
+              <span class="drag-icon">→</span>
+            </div>
+            <div
+              class="timeline-container"
+              id="timeline-track"
+              role="region"
+              aria-label="Event Timeline Track"
+              tabindex="0"
+            >
+              <div class="timeline-line">
+                <div
+                  class="timeline-line-progress"
+                  id="timeline-progress"
+                ></div>
+              </div>
+              <div class="timeline-track" id="timeline-cards-container">
+                <!-- Dynamically loaded -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Numbers / Counters Section -->
+      <section class="numbers-section section-padding" id="stats">
+        <div class="section-container">
+          <div class="numbers-grid" id="stats-grid-container">
+            <!-- Dynamically loaded -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Team Section -->
+      <section class="team-section section-padding" id="team">
+        <div class="section-container">
+          <div class="section-header reveal-fade-up">
+            <span class="editorial-badge space-grotesk">LEADERSHIP</span>
+            <h2 class="section-title cormorant">Executive Guild</h2>
+            <p class="section-desc inter">
+              Meet the leaders of our creative, technological, and strategic
+              engineering directions.
+            </p>
+          </div>
+
+          <!-- Dynamic Team Grid -->
+          <div class="team-grid" id="team-grid-container">
+            <!-- Dynamically loaded -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery Section -->
+      <section class="gallery-section section-padding" id="gallery">
+        <div class="section-container">
+          <div class="section-header reveal-fade-up">
+            <span class="editorial-badge space-grotesk">SNAPSHOTS</span>
+            <h2 class="section-title cormorant">
+              Life Inside the Digital Club
+            </h2>
+            <p class="section-desc inter">
+              Capturing collaboration, design reviews, hackathon nights, and
+              technical showcases.
+            </p>
+          </div>
+
+          <!-- Gallery Filters -->
+          <div
+            class="gallery-filters reveal-fade-up"
+            id="gallery-filters-container"
+            role="tablist"
+            aria-label="Gallery Categories"
+          >
+            <button
+              class="filter-btn active"
+              data-filter="all"
+              role="tab"
+              aria-selected="true"
+            >
+              All snaps
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="Workshops"
+              role="tab"
+              aria-selected="false"
+            >
+              Workshops
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="Design"
+              role="tab"
+              aria-selected="false"
+            >
+              Design
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="Exhibitions"
+              role="tab"
+              aria-selected="false"
+            >
+              Exhibitions
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="Hardware"
+              role="tab"
+              aria-selected="false"
+            >
+              Hardware
+            </button>
+          </div>
+
+          <!-- Masonry Grid -->
+          <div
+            class="gallery-masonry reveal-fade-up"
+            id="gallery-grid-container"
+          >
+            <!-- Dynamically loaded -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section class="testimonials-section section-padding" id="testimonials">
+        <div class="section-container">
+          <div class="section-header reveal-fade-up">
+            <span class="editorial-badge space-grotesk">TESTIMONIALS</span>
+            <h2 class="section-title cormorant">Voice of the Circle</h2>
+            <p class="section-desc inter">
+              Hear from the alumni, students, and mentors who shaped our shared
+              community.
+            </p>
+          </div>
+
+          <div
+            class="testimonials-slider reveal-fade-up"
+            id="testimonials-container"
+          >
+            <!-- Dynamically loaded -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Quote Section -->
+      <section class="quote-section section-padding">
+        <div class="section-container">
+          <div class="quote-wrapper reveal-blur">
+            <blockquote class="large-quote cormorant" id="quote-text">
+              "Software development is not just about typing syntax. It is the
+              architectural discipline of materializing imagination through
+              clean, elegant structures."
+            </blockquote>
+            <cite
+              class="quote-author space-grotesk accent-gold"
+              id="quote-author"
+              >— NPI Digital Club Leadership</cite
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="contact-section section-padding" id="contact">
+        <div class="section-container">
+          <div class="contact-grid">
+            <!-- Contact Info -->
+            <div class="contact-info-panel reveal-fade-up">
+              <span class="editorial-badge space-grotesk">INQUIRIES</span>
+              <h2 class="section-title cormorant">Forge a Connection</h2>
+              <p class="contact-sub inter">
+                Have questions about memberships, sponsorship, or collaborating
+                on a development project? Drop us a message.
+              </p>
+
+              <div class="contact-details-list">
+                <div class="contact-item">
+                  <span class="contact-icon">✉</span>
+                  <div class="contact-item-text">
+                    <span class="item-label space-grotesk">EMAIL US</span>
+                    <a
+                      href="mailto:info@npidigital.org"
+                      class="item-value inter"
+                      id="contact-email"
+                      >info@npidigital.org</a
+                    >
+                  </div>
+                </div>
+                <div class="contact-item">
+                  <span class="contact-icon">☏</span>
+                  <div class="contact-item-text">
+                    <span class="item-label space-grotesk">PHONE</span>
+                    <a
+                      href="tel:+97715555555"
+                      class="item-value inter"
+                      id="contact-phone"
+                      >+977-1-5555555</a
+                    >
+                  </div>
+                </div>
+                <div class="contact-item">
+                  <span class="contact-icon">⚲</span>
+                  <div class="contact-item-text">
+                    <span class="item-label space-grotesk">CAMPUS LOC</span>
+                    <span class="item-value inter" id="contact-address"
+                      >NPI College, Lalitpur, Nepal</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Cinematic Luxury Map Placeholder -->
+              <div class="map-placeholder-box">
+                <div class="map-glow"></div>
+                <div class="map-lines">
+                  <svg
+                    viewBox="0 0 100 100"
+                    width="100%"
+                    height="100%"
+                    stroke="rgba(212, 175, 55, 0.15)"
+                    stroke-width="0.5"
+                    fill="none"
+                  >
+                    <circle cx="50" cy="50" r="10" stroke-dasharray="2 2" />
+                    <circle cx="50" cy="50" r="30" />
+                    <circle cx="50" cy="50" r="45" stroke-dasharray="1 3" />
+                    <line x1="0" y1="50" x2="100" y2="50" />
+                    <line x1="50" y1="0" x2="50" y2="100" />
+                    <circle cx="50" cy="50" r="2" fill="#D4AF37" />
+                  </svg>
+                </div>
+                <span class="map-coords space-mono"
+                  >LAT: 27.6715° N | LNG: 85.3125° E</span
+                >
+              </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-panel reveal-fade-up">
+              <form id="contact-form-element" class="luxury-form">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="contact-name" class="space-grotesk"
+                      >FULL NAME</label
+                    >
+                    <input
+                      type="text"
+                      id="contact-name"
+                      name="name"
+                      class="form-input"
+                      placeholder="e.g. Sanjan Shrestha"
+                      required
+                    />
+                    <span class="input-line"></span>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="contact-email-input" class="space-grotesk"
+                      >EMAIL ADDRESS</label
+                    >
+                    <input
+                      type="email"
+                      id="contact-email-input"
+                      name="email"
+                      class="form-input"
+                      placeholder="e.g. member@npidigital.org"
+                      required
+                    />
+                    <span class="input-line"></span>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="contact-subject" class="space-grotesk"
+                      >SUBJECT</label
+                    >
+                    <input
+                      type="text"
+                      id="contact-subject"
+                      name="subject"
+                      class="form-input"
+                      placeholder="e.g. Project Collaboration"
+                      required
+                    />
+                    <span class="input-line"></span>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="contact-message" class="space-grotesk"
+                      >MESSAGE</label
+                    >
+                    <textarea
+                      id="contact-message"
+                      name="message"
+                      class="form-input form-textarea"
+                      placeholder="Describe your inquiry..."
+                      required
+                    ></textarea>
+                    <span class="input-line"></span>
+                  </div>
+                </div>
+
+                <div class="form-submit-row">
+                  <button
+                    type="submit"
+                    class="btn btn-magnetic form-submit-btn"
+                  >
+                    <span class="btn-text">Transmit Message</span>
+                  </button>
+                </div>
+                <div
+                  class="form-response-msg space-grotesk"
+                  id="form-feedback"
+                ></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="site-footer">
+        <div class="section-container">
+          <div class="footer-grid">
+            <div class="footer-brand">
+              <span class="footer-logo cormorant">NPI DIGITAL</span>
+              <p class="footer-moto inter">
+                Refining Lalitpur's technology frontiers through students,
+                community, and pure engineering.
+              </p>
+            </div>
+            <div class="footer-links-col">
+              <span class="col-title space-grotesk">NAVIGATION</span>
+              <div class="footer-links-list">
+                <a href="#hero" class="footer-link inter">Home</a>
+                <a href="#story" class="footer-link inter">Story</a>
+                <a href="#projects" class="footer-link inter">Projects</a>
+                <a href="#timeline" class="footer-link inter">Timeline</a>
+                <a href="#gallery" class="footer-link inter">Gallery</a>
+              </div>
+            </div>
+            <div class="footer-links-col">
+              <span class="col-title space-grotesk">CONNECT</span>
+              <div class="footer-links-list" id="footer-social-links">
+                <a
+                  href="#"
+                  class="footer-link inter"
+                  target="_blank"
+                  rel="noopener"
+                  >GitHub</a
+                >
+                <a
+                  href="#"
+                  class="footer-link inter"
+                  target="_blank"
+                  rel="noopener"
+                  >LinkedIn</a
+                >
+                <a
+                  href="#"
+                  class="footer-link inter"
+                  target="_blank"
+                  rel="noopener"
+                  >Facebook</a
+                >
+                <a href="mailto:info@npidigital.org" class="footer-link inter"
+                  >Email</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <span class="copyright space-mono" id="footer-copyright"
+              >&copy; 2026 NPI Digital Club. All Rights Reserved.</span
+            >
+            <a
+              href="#hero"
+              class="back-to-top btn-magnetic"
+              aria-label="Scroll back to top"
+            >
+              <span class="btn-text">↑ BACK TO TOP</span>
             </a>
           </div>
         </div>
-      </div>
+      </footer>
+    </main>
 
-      <!-- Animated scroll indicator -->
-      <div class="scroll-indicator" id="scroll-indicator">
-        <span class="scroll-text space-grotesk">SCROLL TO DISCOVER</span>
-        <div class="scroll-line">
-          <div class="scroll-line-fill"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Our Story Section -->
-    <section class="story-section section-padding" id="story">
-      <div class="section-container">
-        <div class="editorial-grid">
-          <!-- Text Columns -->
-          <div class="story-text-wrapper reveal-fade-up">
-            <span class="editorial-badge space-grotesk" id="story-badge">OUR STORY</span>
-            <h2 class="section-title cormorant" id="story-title">A Legacy of Innovation & Digital Mastery</h2>
-            
-            <div class="story-p-group">
-              <div class="story-block">
-                <h4 class="block-title space-grotesk">OUR MISSION</h4>
-                <p class="inter" id="story-mission">To nurture high-caliber student developers, UI/UX designers, and hardware engineers...</p>
-              </div>
-              <div class="story-block">
-                <h4 class="block-title space-grotesk">OUR VISION</h4>
-                <p class="inter" id="story-vision">To establish NPI Digital Club as a premier technology hub...</p>
-              </div>
-              <div class="story-block">
-                <h4 class="block-title space-grotesk">OUR PURPOSE</h4>
-                <p class="inter" id="story-purpose">We offer a collaborative playground where code compiles...</p>
-              </div>
-              <div class="story-block">
-                <h4 class="block-title space-grotesk">OUR HISTORY</h4>
-                <p class="inter" id="story-history">Founded as a tight-knit circle of tech enthusiasts...</p>
-              </div>
-            </div>
+    <!-- Fullscreen Gallery Lightbox Modal -->
+    <dialog class="lightbox-dialog" id="gallery-lightbox">
+      <div class="lightbox-overlay">
+        <button
+          class="lightbox-close"
+          id="lightbox-close-btn"
+          aria-label="Close Lightbox"
+        >
+          &times;
+        </button>
+        <div class="lightbox-content">
+          <button
+            class="lightbox-nav lightbox-prev"
+            id="lightbox-prev-btn"
+            aria-label="Previous Image"
+          >
+            ⟵
+          </button>
+          <div class="lightbox-image-box">
+            <img
+              src=""
+              alt="Lightbox View"
+              class="lightbox-img"
+              id="lightbox-active-img"
+            />
+            <p
+              class="lightbox-caption space-grotesk"
+              id="lightbox-caption-text"
+            >
+              Caption text here
+            </p>
+            <span class="lightbox-index space-mono" id="lightbox-index-counter"
+              >1 / 4</span
+            >
           </div>
-
-          <!-- Image Column with Parallax Reveal -->
-          <div class="story-img-wrapper reveal-mask-right">
-            <div class="parallax-img-container">
-              <img src="" alt="NPI Digital Club Editorial Artwork" class="parallax-img" id="story-image">
-              <div class="parallax-overlay"></div>
-            </div>
-          </div>
+          <button
+            class="lightbox-nav lightbox-next"
+            id="lightbox-next-btn"
+            aria-label="Next Image"
+          >
+            ⟶
+          </button>
         </div>
       </div>
-    </section>
+    </dialog>
 
-    <!-- What We Do / Services Section -->
-    <section class="services-section section-padding" id="what-we-do">
-      <div class="section-container">
-        <div class="section-header reveal-fade-up">
-          <span class="editorial-badge space-grotesk" id="services-badge">OUR CRAFT</span>
-          <h2 class="section-title cormorant" id="services-title">Shaping the Frontiers of Modern Technology</h2>
-          <p class="section-desc inter" id="services-desc">We specialize in modern engineering verticals, cultivating technical execution with high-end aesthetic sensibilities.</p>
-        </div>
+    <!-- Dynamic RSVP / Registration Dialog for Timeline Events -->
+    <dialog class="rsvp-dialog" id="rsvp-modal">
+      <div class="rsvp-modal-overlay">
+        <div class="rsvp-modal-card">
+          <button
+            class="rsvp-close-btn"
+            id="rsvp-close-btn"
+            aria-label="Close Registration"
+          >
+            &times;
+          </button>
+          <span class="editorial-badge space-grotesk">RSVP RESERVATION</span>
+          <h3 class="rsvp-title cormorant" id="rsvp-event-title">
+            Event Title
+          </h3>
+          <p class="rsvp-desc inter" id="rsvp-event-desc">
+            Secure your ticket for the event. Registered attendees will receive
+            calendar details and entry permissions via email.
+          </p>
 
-        <!-- Dynamic Services Grid -->
-        <div class="services-grid" id="services-grid-container">
-          <!-- Dynamically loaded -->
-        </div>
-      </div>
-    </section>
+          <form class="rsvp-form luxury-form" id="rsvp-form-element">
+            <input type="hidden" id="rsvp-event-id" name="eventId" />
 
-    <!-- Featured Projects Section -->
-    <section class="projects-section section-padding" id="projects">
-      <div class="section-container">
-        <div class="section-header reveal-fade-up">
-          <span class="editorial-badge space-grotesk">PORTFOLIO</span>
-          <h2 class="section-title cormorant">Featured Masterpieces</h2>
-          <p class="section-desc inter">Explore premium projects engineered, coded, and designed by our students.</p>
-        </div>
-
-        <!-- Dynamic Projects Container -->
-        <div class="projects-showcase-container" id="projects-container">
-          <!-- Dynamically loaded -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Event Timeline Section -->
-    <section class="timeline-section section-padding" id="timeline">
-      <div class="section-container">
-        <div class="section-header reveal-fade-up">
-          <span class="editorial-badge space-grotesk">ROADMAP</span>
-          <h2 class="section-title cormorant">Chronicles of Engagement</h2>
-          <p class="section-desc inter">Take a look at our events, workshops, pitch nights, and upcoming engineering benchmarks.</p>
-        </div>
-
-        <!-- Animated Drag-Friendly Horizontal Timeline -->
-        <div class="timeline-wrapper reveal-fade-up">
-          <div class="timeline-drag-indicator space-mono">
-            <span class="drag-icon">←</span> DRAG TO EXPLORE TIMELINE <span class="drag-icon">→</span>
-          </div>
-          <div class="timeline-container" id="timeline-track" role="region" aria-label="Event Timeline Track" tabindex="0">
-            <div class="timeline-line">
-              <div class="timeline-line-progress" id="timeline-progress"></div>
-            </div>
-            <div class="timeline-track" id="timeline-cards-container">
-              <!-- Dynamically loaded -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Numbers / Counters Section -->
-    <section class="numbers-section section-padding" id="stats">
-      <div class="section-container">
-        <div class="numbers-grid" id="stats-grid-container">
-          <!-- Dynamically loaded -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Team Section -->
-    <section class="team-section section-padding" id="team">
-      <div class="section-container">
-        <div class="section-header reveal-fade-up">
-          <span class="editorial-badge space-grotesk">LEADERSHIP</span>
-          <h2 class="section-title cormorant">Executive Guild</h2>
-          <p class="section-desc inter">Meet the leaders of our creative, technological, and strategic engineering directions.</p>
-        </div>
-
-        <!-- Dynamic Team Grid -->
-        <div class="team-grid" id="team-grid-container">
-          <!-- Dynamically loaded -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="gallery-section section-padding" id="gallery">
-      <div class="section-container">
-        <div class="section-header reveal-fade-up">
-          <span class="editorial-badge space-grotesk">SNAPSHOTS</span>
-          <h2 class="section-title cormorant">Life Inside the Digital Club</h2>
-          <p class="section-desc inter">Capturing collaboration, design reviews, hackathon nights, and technical showcases.</p>
-        </div>
-
-        <!-- Gallery Filters -->
-        <div class="gallery-filters reveal-fade-up" id="gallery-filters-container" role="tablist" aria-label="Gallery Categories">
-          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All snaps</button>
-          <button class="filter-btn" data-filter="Workshops" role="tab" aria-selected="false">Workshops</button>
-          <button class="filter-btn" data-filter="Design" role="tab" aria-selected="false">Design</button>
-          <button class="filter-btn" data-filter="Exhibitions" role="tab" aria-selected="false">Exhibitions</button>
-          <button class="filter-btn" data-filter="Hardware" role="tab" aria-selected="false">Hardware</button>
-        </div>
-
-        <!-- Masonry Grid -->
-        <div class="gallery-masonry reveal-fade-up" id="gallery-grid-container">
-          <!-- Dynamically loaded -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials-section section-padding" id="testimonials">
-      <div class="section-container">
-        <div class="section-header reveal-fade-up">
-          <span class="editorial-badge space-grotesk">TESTIMONIALS</span>
-          <h2 class="section-title cormorant">Voice of the Circle</h2>
-          <p class="section-desc inter">Hear from the alumni, students, and mentors who shaped our shared community.</p>
-        </div>
-
-        <div class="testimonials-slider reveal-fade-up" id="testimonials-container">
-          <!-- Dynamically loaded -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Quote Section -->
-    <section class="quote-section section-padding">
-      <div class="section-container">
-        <div class="quote-wrapper reveal-blur">
-          <blockquote class="large-quote cormorant" id="quote-text">
-            "Software development is not just about typing syntax. It is the architectural discipline of materializing imagination through clean, elegant structures."
-          </blockquote>
-          <cite class="quote-author space-grotesk accent-gold" id="quote-author">— NPI Digital Club Leadership</cite>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-section section-padding" id="contact">
-      <div class="section-container">
-        <div class="contact-grid">
-          
-          <!-- Contact Info -->
-          <div class="contact-info-panel reveal-fade-up">
-            <span class="editorial-badge space-grotesk">INQUIRIES</span>
-            <h2 class="section-title cormorant">Forge a Connection</h2>
-            <p class="contact-sub inter">Have questions about memberships, sponsorship, or collaborating on a development project? Drop us a message.</p>
-            
-            <div class="contact-details-list">
-              <div class="contact-item">
-                <span class="contact-icon">✉</span>
-                <div class="contact-item-text">
-                  <span class="item-label space-grotesk">EMAIL US</span>
-                  <a href="mailto:info@npidigital.org" class="item-value inter" id="contact-email">info@npidigital.org</a>
-                </div>
-              </div>
-              <div class="contact-item">
-                <span class="contact-icon">☏</span>
-                <div class="contact-item-text">
-                  <span class="item-label space-grotesk">PHONE</span>
-                  <a href="tel:+97715555555" class="item-value inter" id="contact-phone">+977-1-5555555</a>
-                </div>
-              </div>
-              <div class="contact-item">
-                <span class="contact-icon">⚲</span>
-                <div class="contact-item-text">
-                  <span class="item-label space-grotesk">CAMPUS LOC</span>
-                  <span class="item-value inter" id="contact-address">NPI College, Lalitpur, Nepal</span>
-                </div>
-              </div>
+            <div class="form-group">
+              <label for="rsvp-name" class="space-grotesk">FULL NAME</label>
+              <input
+                type="text"
+                id="rsvp-name"
+                name="name"
+                class="form-input"
+                placeholder="e.g. Sanjan Shrestha"
+                required
+              />
+              <span class="input-line"></span>
             </div>
 
-            <!-- Cinematic Luxury Map Placeholder -->
-            <div class="map-placeholder-box">
-              <div class="map-glow"></div>
-              <div class="map-lines">
-                <svg viewBox="0 0 100 100" width="100%" height="100%" stroke="rgba(212, 175, 55, 0.15)" stroke-width="0.5" fill="none">
-                  <circle cx="50" cy="50" r="10" stroke-dasharray="2 2"/>
-                  <circle cx="50" cy="50" r="30"/>
-                  <circle cx="50" cy="50" r="45" stroke-dasharray="1 3"/>
-                  <line x1="0" y1="50" x2="100" y2="50"/>
-                  <line x1="50" y1="0" x2="50" y2="100"/>
-                  <circle cx="50" cy="50" r="2" fill="#D4AF37"/>
-                </svg>
-              </div>
-              <span class="map-coords space-mono">LAT: 27.6715° N | LNG: 85.3125° E</span>
+            <div class="form-group">
+              <label for="rsvp-email" class="space-grotesk"
+                >EMAIL ADDRESS</label
+              >
+              <input
+                type="email"
+                id="rsvp-email"
+                name="email"
+                class="form-input"
+                placeholder="e.g. student@npi.edu.np"
+                required
+              />
+              <span class="input-line"></span>
             </div>
-          </div>
 
-          <!-- Contact Form -->
-          <div class="contact-form-panel reveal-fade-up">
-            <form id="contact-form-element" class="luxury-form">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="contact-name" class="space-grotesk">FULL NAME</label>
-                  <input type="text" id="contact-name" name="name" class="form-input" placeholder="e.g. Sanjan Shrestha" required>
-                  <span class="input-line"></span>
-                </div>
-              </div>
-              
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="contact-email-input" class="space-grotesk">EMAIL ADDRESS</label>
-                  <input type="email" id="contact-email-input" name="email" class="form-input" placeholder="e.g. member@npidigital.org" required>
-                  <span class="input-line"></span>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="contact-subject" class="space-grotesk">SUBJECT</label>
-                  <input type="text" id="contact-subject" name="subject" class="form-input" placeholder="e.g. Project Collaboration" required>
-                  <span class="input-line"></span>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="contact-message" class="space-grotesk">MESSAGE</label>
-                  <textarea id="contact-message" name="message" class="form-input form-textarea" placeholder="Describe your inquiry..." required></textarea>
-                  <span class="input-line"></span>
-                </div>
-              </div>
-
-              <div class="form-submit-row">
-                <button type="submit" class="btn btn-magnetic form-submit-btn">
-                  <span class="btn-text">Transmit Message</span>
-                </button>
-              </div>
-              <div class="form-response-msg space-grotesk" id="form-feedback"></div>
-            </form>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-      <div class="section-container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <span class="footer-logo cormorant">NPI DIGITAL</span>
-            <p class="footer-moto inter">Refining Lalitpur's technology frontiers through students, community, and pure engineering.</p>
-          </div>
-          <div class="footer-links-col">
-            <span class="col-title space-grotesk">NAVIGATION</span>
-            <div class="footer-links-list">
-              <a href="#hero" class="footer-link inter">Home</a>
-              <a href="#story" class="footer-link inter">Story</a>
-              <a href="#projects" class="footer-link inter">Projects</a>
-              <a href="#timeline" class="footer-link inter">Timeline</a>
-              <a href="#gallery" class="footer-link inter">Gallery</a>
+            <div class="form-group">
+              <label for="rsvp-roll" class="space-grotesk">ROLL NUMBER</label>
+              <input
+                type="text"
+                id="rsvp-roll"
+                name="roll"
+                class="form-input"
+                placeholder="e.g. CS-2024-42"
+                required
+              />
+              <span class="input-line"></span>
             </div>
-          </div>
-          <div class="footer-links-col">
-            <span class="col-title space-grotesk">CONNECT</span>
-            <div class="footer-links-list" id="footer-social-links">
-              <a href="#" class="footer-link inter" target="_blank" rel="noopener">GitHub</a>
-              <a href="#" class="footer-link inter" target="_blank" rel="noopener">LinkedIn</a>
-              <a href="#" class="footer-link inter" target="_blank" rel="noopener">Facebook</a>
-              <a href="mailto:info@npidigital.org" class="footer-link inter">Email</a>
+
+            <div class="rsvp-action-row">
+              <button type="submit" class="btn btn-magnetic rsvp-submit-btn">
+                <span class="btn-text">Confirm Seat</span>
+              </button>
             </div>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <span class="copyright space-mono" id="footer-copyright">&copy; 2026 NPI Digital Club. All Rights Reserved.</span>
-          <a href="#hero" class="back-to-top btn-magnetic" aria-label="Scroll back to top">
-            <span class="btn-text">↑ BACK TO TOP</span>
-          </a>
+          </form>
         </div>
       </div>
-    </footer>
+    </dialog>
 
-  </main>
-
-  <!-- Fullscreen Gallery Lightbox Modal -->
-  <dialog class="lightbox-dialog" id="gallery-lightbox">
-    <div class="lightbox-overlay">
-      <button class="lightbox-close" id="lightbox-close-btn" aria-label="Close Lightbox">&times;</button>
-      <div class="lightbox-content">
-        <button class="lightbox-nav lightbox-prev" id="lightbox-prev-btn" aria-label="Previous Image">⟵</button>
-        <div class="lightbox-image-box">
-          <img src="" alt="Lightbox View" class="lightbox-img" id="lightbox-active-img">
-          <p class="lightbox-caption space-grotesk" id="lightbox-caption-text">Caption text here</p>
-          <span class="lightbox-index space-mono" id="lightbox-index-counter">1 / 4</span>
-        </div>
-        <button class="lightbox-nav lightbox-next" id="lightbox-next-btn" aria-label="Next Image">⟶</button>
-      </div>
-    </div>
-  </dialog>
-
-  <!-- Dynamic RSVP / Registration Dialog for Timeline Events -->
-  <dialog class="rsvp-dialog" id="rsvp-modal">
-    <div class="rsvp-modal-overlay">
-      <div class="rsvp-modal-card">
-        <button class="rsvp-close-btn" id="rsvp-close-btn" aria-label="Close Registration">&times;</button>
-        <span class="editorial-badge space-grotesk">RSVP RESERVATION</span>
-        <h3 class="rsvp-title cormorant" id="rsvp-event-title">Event Title</h3>
-        <p class="rsvp-desc inter" id="rsvp-event-desc">Secure your ticket for the event. Registered attendees will receive calendar details and entry permissions via email.</p>
-        
-        <form class="rsvp-form luxury-form" id="rsvp-form-element">
-          <input type="hidden" id="rsvp-event-id" name="eventId">
-          
-          <div class="form-group">
-            <label for="rsvp-name" class="space-grotesk">FULL NAME</label>
-            <input type="text" id="rsvp-name" name="name" class="form-input" placeholder="e.g. Sanjan Shrestha" required>
-            <span class="input-line"></span>
-          </div>
-
-          <div class="form-group">
-            <label for="rsvp-email" class="space-grotesk">EMAIL ADDRESS</label>
-            <input type="email" id="rsvp-email" name="email" class="form-input" placeholder="e.g. student@npi.edu.np" required>
-            <span class="input-line"></span>
-          </div>
-
-          <div class="form-group">
-            <label for="rsvp-roll" class="space-grotesk">ROLL NUMBER</label>
-            <input type="text" id="rsvp-roll" name="roll" class="form-input" placeholder="e.g. CS-2024-42" required>
-            <span class="input-line"></span>
-          </div>
-
-          <div class="rsvp-action-row">
-            <button type="submit" class="btn btn-magnetic rsvp-submit-btn">
-              <span class="btn-text">Confirm Seat</span>
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </dialog>
-
-  <!-- Entrypoint Script -->
-  <script type="module" src="js/script.js"></script>
-</body>
+    <!-- Entrypoint Script -->
+    <script type="module" src="js/script.js"></script>
+  </body>
 </html>
