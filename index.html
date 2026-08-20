@@ -26,18 +26,39 @@
     />
     <meta property="og:type" content="website" />
 
+    <meta name="color-scheme" content="dark light" />
+
+    <script>
+      (() => {
+        const storageKey = "npi-theme";
+        const root = document.documentElement;
+        try {
+          const stored = localStorage.getItem(storageKey);
+          const systemDark = window.matchMedia(
+            "(prefers-color-scheme: dark)",
+          ).matches;
+          const theme = stored || (systemDark ? "dark" : "light");
+          root.dataset.theme = theme;
+          root.style.colorScheme = theme;
+        } catch (error) {
+          root.dataset.theme = "dark";
+          root.style.colorScheme = "dark";
+        }
+      })();
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
       rel="stylesheet"
     />
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
+  <body class="loading">
     <!-- Custom Cinematic Cursor -->
     <div class="custom-cursor" id="custom-cursor" aria-hidden="true">
       <div class="cursor-dot"></div>
@@ -46,62 +67,17 @@
 
     <!-- Luxury Preloader -->
     <div class="luxury-loader" id="loader">
-      <div class="loader-bg-slice"></div>
       <div class="loader-content">
         <div class="loader-logo-container">
-          <!-- Handcrafted original geometric svg logo -->
-          <svg
-            class="loader-logo-svg"
-            viewBox="0 0 100 100"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <polygon
-              points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5"
-              class="logo-polygon"
-              stroke="#D4AF37"
-              stroke-width="4"
-              stroke-linejoin="round"
-            />
-            <line
-              x1="50"
-              y1="5"
-              x2="50"
-              y2="95"
-              class="logo-line logo-line-center"
-              stroke="#D4AF37"
-              stroke-width="2"
-            />
-            <line
-              x1="5"
-              y1="27.5"
-              x2="95"
-              y2="72.5"
-              class="logo-line"
-              stroke="#B08D57"
-              stroke-width="1.5"
-              stroke-dasharray="4 4"
-            />
-            <line
-              x1="95"
-              y1="27.5"
-              x2="5"
-              y2="72.5"
-              class="logo-line"
-              stroke="#B08D57"
-              stroke-width="1.5"
-              stroke-dasharray="4 4"
-            />
-            <circle
-              cx="50"
-              cy="50"
-              r="15"
-              class="logo-circle"
-              stroke="#D4AF37"
-              stroke-width="3"
-              fill="#050505"
-            />
-          </svg>
+          <img
+            src="assets/images/123.png"
+            alt="NPI Digital Club logo"
+            class="loader-logo-img"
+            width="512"
+            height="512"
+            decoding="async"
+            fetchpriority="high"
+          />
         </div>
         <div class="loader-info">
           <h2 class="loader-title">NPI DIGITAL CLUB</h2>
@@ -148,18 +124,31 @@
           >
         </nav>
 
-        <!-- Hamburger button for mobile -->
-        <button
-          class="hamburger-menu"
-          id="hamburger-btn"
-          aria-label="Toggle Navigation Menu"
-          aria-expanded="false"
-          aria-controls="nav-links"
-        >
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </button>
+        <div class="nav-actions">
+          <button
+            class="theme-toggle"
+            id="theme-toggle"
+            type="button"
+            aria-label="Switch to light mode"
+            title="Switch to light mode"
+          >
+            <span class="theme-toggle-icon sun-icon" aria-hidden="true"></span>
+            <span class="theme-toggle-icon moon-icon" aria-hidden="true"></span>
+          </button>
+
+          <!-- Hamburger button for mobile -->
+          <button
+            class="hamburger-menu"
+            id="hamburger-btn"
+            aria-label="Toggle Navigation Menu"
+            aria-expanded="false"
+            aria-controls="nav-links"
+          >
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -442,7 +431,6 @@
             id="gallery-grid-container"
           >
             <!-- Dynamically loaded -->
-           
           </div>
         </div>
       </section>

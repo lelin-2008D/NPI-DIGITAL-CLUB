@@ -25,30 +25,72 @@ export class Animations {
     const perc = document.getElementById('loader-perc');
     if (!loader || !bar || !perc) return;
 
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const logo = loader.querySelector('.loader-logo-img');
     let progress = 0;
-    const duration = 2000; // 2 seconds
-    const interval = 20; // 20ms steps
-    const step = 100 / (duration / interval);
+    let complete = false;
+    let frameId = null;
+    const startedAt = performance.now();
+    const minimumVisibleMs = reducedMotion ? 120 : 520;
+    const hardFallbackMs = 3500;
 
-    const timer = setInterval(() => {
-      progress += step;
-      if (progress >= 100) {
-        progress = 100;
-        clearInterval(timer);
-        
-        // Add fade out styles
-        loader.classList.add('fade-out');
-        document.body.classList.remove('loading');
-        
-        // Trigger initial scroll reveals
-        setTimeout(() => {
-          this.triggerInitialReveals();
-        }, 300);
-      }
-      
+    const setProgress = (value) => {
+      progress = Math.max(progress, Math.min(100, value));
       bar.style.width = `${progress}%`;
       perc.textContent = `${Math.floor(progress)}%`;
-    }, interval);
+    };
+
+    const finish = () => {
+      if (complete) return;
+      complete = true;
+      cancelAnimationFrame(frameId);
+      setProgress(100);
+      loader.classList.add('complete');
+
+      const revealDelay = reducedMotion ? 40 : 260;
+      window.setTimeout(() => {
+        loader.classList.add('fade-out');
+        document.body.classList.remove('loading');
+        document.body.classList.add('app-ready');
+        this.triggerInitialReveals();
+      }, revealDelay);
+    };
+
+    const waitForLogo = new Promise((resolve) => {
+      if (!logo || logo.complete) {
+        resolve();
+        return;
+      }
+      logo.addEventListener('load', resolve, { once: true });
+      logo.addEventListener('error', resolve, { once: true });
+    });
+
+    const waitForWindow = new Promise((resolve) => {
+      if (document.readyState === 'complete') {
+        resolve();
+        return;
+      }
+      window.addEventListener('load', resolve, { once: true });
+    });
+
+    const tick = () => {
+      if (complete) return;
+      const elapsed = performance.now() - startedAt;
+      const eased = 1 - Math.exp(-elapsed / 720);
+      setProgress(Math.min(92, eased * 92));
+      frameId = requestAnimationFrame(tick);
+    };
+
+    frameId = requestAnimationFrame(tick);
+
+    Promise.race([
+      Promise.all([waitForLogo, waitForWindow]),
+      new Promise((resolve) => window.setTimeout(resolve, hardFallbackMs))
+    ]).then(() => {
+      const elapsed = performance.now() - startedAt;
+      const remaining = Math.max(0, minimumVisibleMs - elapsed);
+      window.setTimeout(finish, remaining);
+    });
   }
 
   /**
@@ -192,6 +234,7 @@ export class Animations {
   static initHeroCanvas() {
     const canvas = document.getElementById('hero-canvas');
     if (!canvas) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const ctx = canvas.getContext('2d');
     let width = (canvas.width = window.innerWidth);

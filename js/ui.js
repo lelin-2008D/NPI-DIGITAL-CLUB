@@ -14,6 +14,7 @@ export class UI {
    * Initialize UI bindings
    */
   static init() {
+    this.initThemeToggle();
     this.initNavbar();
     this.initMobileMenu();
     this.initTimelineDrag();
@@ -25,6 +26,55 @@ export class UI {
     // Map global windows hooks for dynamically rendered content links
     window.triggerRSVP = (eventId, eventTitle) => this.openRSVP(eventId, eventTitle);
     window.openLightbox = (index) => this.openLightboxModal(index);
+  }
+
+  /**
+   * 0. Persistent light/dark theme toggle
+   */
+  static initThemeToggle() {
+    const toggle = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+    const storageKey = 'npi-theme';
+    if (!toggle) return;
+
+    const applyTheme = (theme, persist = true) => {
+      root.dataset.theme = theme;
+      root.style.colorScheme = theme;
+      toggle.setAttribute(
+        'aria-label',
+        theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+      );
+      toggle.setAttribute(
+        'title',
+        theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+      );
+
+      if (persist) {
+        try {
+          localStorage.setItem(storageKey, theme);
+        } catch (error) {
+          // Theme still works for the current session when storage is unavailable.
+        }
+      }
+    };
+
+    const initialTheme = root.dataset.theme === 'light' ? 'light' : 'dark';
+    applyTheme(initialTheme, false);
+
+    toggle.addEventListener('click', () => {
+      const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      applyTheme(nextTheme);
+    });
+
+    const systemPreference = window.matchMedia('(prefers-color-scheme: dark)');
+    systemPreference.addEventListener?.('change', (event) => {
+      try {
+        if (localStorage.getItem(storageKey)) return;
+      } catch (error) {
+        return;
+      }
+      applyTheme(event.matches ? 'dark' : 'light', false);
+    });
   }
 
   /**
