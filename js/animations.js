@@ -101,6 +101,10 @@ export class Animations {
     if (heroContent) {
       heroContent.classList.add('active');
     }
+    const heroLogoCol = document.querySelector('.hero-logo-col');
+    if (heroLogoCol) {
+      heroLogoCol.classList.add('active');
+    }
   }
 
   /**
@@ -275,6 +279,9 @@ export class Animations {
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
 
+      const isDark = document.documentElement.dataset.theme === 'dark';
+      const particleRgb = isDark ? '214, 185, 140' : '29, 78, 216';
+
       // Draw lines
       for (let i = 0; i < maxParticles; i++) {
         const p1 = particles[i];
@@ -287,8 +294,8 @@ export class Animations {
         if (p1.x < 0 || p1.x > width) p1.vx *= -1;
         if (p1.y < 0 || p1.y > height) p1.vy *= -1;
 
-        // Draw particle dot in gold
-        ctx.fillStyle = 'rgba(212, 175, 55, 0.25)';
+        // Draw particle dot
+        ctx.fillStyle = `rgba(${particleRgb}, 0.25)`;
         ctx.beginPath();
         ctx.arc(p1.x, p1.y, p1.radius, 0, Math.PI * 2);
         ctx.fill();
@@ -302,7 +309,7 @@ export class Animations {
 
           if (dist < connectionDist) {
             const alpha = (1 - dist / connectionDist) * 0.08;
-            ctx.strokeStyle = `rgba(212, 175, 55, ${alpha})`;
+            ctx.strokeStyle = `rgba(${particleRgb}, ${alpha})`;
             ctx.lineWidth = 0.5;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
@@ -319,7 +326,7 @@ export class Animations {
 
           if (distMouse < 180) {
             const alphaMouse = (1 - distMouse / 180) * 0.12;
-            ctx.strokeStyle = `rgba(212, 175, 55, ${alphaMouse})`;
+            ctx.strokeStyle = `rgba(${particleRgb}, ${alphaMouse})`;
             ctx.lineWidth = 0.5;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
@@ -355,7 +362,7 @@ export class Animations {
           // Pull the text layer towards mouse cursor (limits max translate distance to 12px)
           btnText.style.transform = `translate(${x * 0.35}px, ${y * 0.35}px)`;
           btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
-          btn.style.borderColor = 'var(--accent-gold)';
+          btn.style.borderColor = 'var(--border-accent)';
         });
 
         btn.addEventListener('mouseleave', () => {

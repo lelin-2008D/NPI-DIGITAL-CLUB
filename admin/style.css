@@ -6,21 +6,105 @@
    1. CORE TOKENS
    -------------------------------------------------------------------------- */
 :root {
-  --bg-primary: #050505;
-  --bg-card: #111111;
-  --accent-gold: #D4AF37;
-  --accent-gold-sec: #B08D57;
-  --text-white: #F5F5F5;
-  --text-muted: #9A9A9A;
-  --border-color: rgba(212, 175, 55, 0.15);
-  --border-color-glow: rgba(212, 175, 55, 0.4);
-  --red-color: #c62828;
-  
+  --bg-primary: #F7F9FC;
+  --bg-secondary: #EEF4FF;
+  --bg-tertiary: #E0ECFF;
+
+  --text-primary: #0B1633;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+
+  --card-bg: #FFFFFF;
+  --card-bg-secondary: rgba(255, 255, 255, 0.72);
+
+  --accent-primary: #1D4ED8;
+  --accent-secondary: #2563EB;
+  --accent-premium: #1D4ED8;
+
+  --pointer-color: #1D4ED8;
+  --pointer-glow: rgba(29, 78, 216, 0.20);
+
+  --border-color: rgba(11, 22, 51, 0.10);
+  --border-accent: rgba(29, 78, 216, 0.20);
+
+  --hero-gradient: linear-gradient(135deg, #FFFFFF 0%, #EEF4FF 55%, #E0ECFF 100%);
+  --cta-gradient: linear-gradient(135deg, #1D4ED8, #3B82F6);
+  --glow-radial: radial-gradient(circle, rgba(29, 78, 216, 0.12), transparent 65%);
+
+  --bg-card: var(--card-bg);
+  --accent-gold: var(--accent-premium);
+  --accent-gold-sec: var(--accent-secondary);
+  --text-white: var(--text-primary);
+  --border-color-glow: var(--border-accent);
+  --red-color: #dc2626;
+
   --font-sub: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', sans-serif;
 
   --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-fast: all 0.25s ease;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #050816;
+  --bg-secondary: #0B1633;
+  --bg-tertiary: #123A73;
+
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+
+  --card-bg: #0B1633;
+  --card-bg-secondary: rgba(11, 22, 51, 0.70);
+
+  --accent-primary: #2563EB;
+  --accent-secondary: #123A73;
+  --accent-premium: #D6B98C;
+
+  --pointer-color: #D6B98C;
+  --pointer-glow: rgba(214, 185, 140, 0.25);
+
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-accent: rgba(214, 185, 140, 0.25);
+
+  --hero-gradient: linear-gradient(135deg, #050816 0%, #0B1633 45%, #123A73 75%, #2563EB 100%);
+  --cta-gradient: linear-gradient(135deg, #123A73, #2563EB);
+  --glow-radial: radial-gradient(circle, rgba(37, 99, 235, 0.25), transparent 65%);
+
+  --bg-card: var(--card-bg);
+  --accent-gold: var(--accent-premium);
+  --accent-gold-sec: var(--accent-secondary);
+  --text-white: var(--text-primary);
+  --border-color-glow: var(--border-accent);
+  --red-color: #ff6f70;
+}
+
+html,
+body,
+button,
+a,
+input,
+textarea,
+select,
+.card,
+.badge,
+.modal,
+nav,
+section,
+footer,
+.icon,
+.decorative-element,
+.admin-card,
+.sidebar,
+.topbar,
+.login-card {
+  transition:
+    background-color 300ms ease,
+    color 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease,
+    fill 300ms ease,
+    stroke 300ms ease;
 }
 
 * {
@@ -286,7 +370,7 @@ body.admin-body {
 }
 
 .btn:hover {
-  box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+  box-shadow: 0 0 20px var(--border-accent);
   color: var(--bg-primary) !important;
 }
 
@@ -362,7 +446,7 @@ body.admin-body {
 
 .nav-btn:hover, .nav-btn.active {
   color: var(--text-white);
-  background-color: rgba(212, 175, 55, 0.04);
+  background-color: var(--card-bg-secondary);
 }
 
 .nav-btn.active {
@@ -644,7 +728,7 @@ body.admin-body {
 
 .admin-input:focus {
   border-color: var(--accent-gold);
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.05);
+  box-shadow: 0 0 10px var(--border-accent);
 }
 
 .admin-textarea {

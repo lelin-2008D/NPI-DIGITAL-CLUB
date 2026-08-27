@@ -5,12 +5,12 @@
     "metaKeywords": "NPI, Digital Club, Software Engineering, Design, AI, Lalitpur, Nepal, Web Development",
     "copyright": "Designed with ❤️ by NPI Digital Club",
     "theme": {
-      "colorBg": "#050505",
-      "colorCard": "#111111",
-      "colorGold": "#D4AF37",
-      "colorSecondaryGold": "#B08D57",
-      "colorWhite": "#F5F5F5",
-      "colorMuted": "#9A9A9A"
+      "colorBg": "var(--bg-primary)",
+      "colorCard": "var(--card-bg)",
+      "colorGold": "var(--accent-premium)",
+      "colorSecondaryGold": "var(--accent-secondary)",
+      "colorWhite": "var(--text-primary)",
+      "colorMuted": "var(--text-muted)"
     }
   },
   "hero": {
