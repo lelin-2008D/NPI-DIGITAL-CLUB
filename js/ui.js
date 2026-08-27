@@ -48,6 +48,10 @@ export class UI {
         'title',
         theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
       );
+      toggle.setAttribute(
+        'aria-checked',
+        theme === 'light' ? 'true' : 'false'
+      );
 
       if (persist) {
         try {

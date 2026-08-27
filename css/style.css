@@ -504,6 +504,7 @@ body.cursor-hover .cursor-dot {
 .luxury-loader.fade-out {
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
 }
 
 .luxury-loader.complete .loader-logo-container {
@@ -702,66 +703,94 @@ body.cursor-hover .cursor-dot {
 }
 
 .theme-toggle {
-  width: 2.65rem;
-  height: 2.65rem;
-  border: 1px solid var(--border-color);
-  color: var(--text-white);
-  display: inline-grid;
-  place-items: center;
+  width: 52px;
+  height: 28px;
+  border-radius: 9999px;
+  border: none;
+  outline: none;
+  background-color: #2B2D2F;
   cursor: pointer;
   position: relative;
-  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
   transition:
-    border-color 0.3s ease,
-    background-color 0.3s ease,
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+    background-color 250ms ease-in-out,
+    box-shadow 250ms ease-in-out,
+    transform 150ms ease;
+  flex-shrink: 0;
 }
 
 .theme-toggle:hover {
-  border-color: var(--border-color-glow);
-  background-color: var(--card-bg-secondary);
-  box-shadow: 0 0 18px var(--border-accent);
+  transform: scale(1.04);
 }
 
-.theme-toggle-icon {
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
+}
+
+:root[data-theme="light"] .theme-toggle {
+  background-color: #D5DCF0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.theme-toggle-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
   position: absolute;
-  width: 1rem;
-  height: 1rem;
-  transition:
-    opacity 0.28s ease,
-    transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  top: 3px;
+  left: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(0);
+  transition: transform 250ms ease-in-out;
+  pointer-events: none;
 }
 
-.sun-icon {
-  border: 1.7px solid currentColor;
-  border-radius: 50%;
-  box-shadow:
-    0 -7px 0 -5.5px currentColor,
-    0 7px 0 -5.5px currentColor,
-    7px 0 0 -5.5px currentColor,
-    -7px 0 0 -5.5px currentColor,
-    5px 5px 0 -5.5px currentColor,
-    -5px 5px 0 -5.5px currentColor,
-    5px -5px 0 -5.5px currentColor,
-    -5px -5px 0 -5.5px currentColor;
+:root[data-theme="light"] .theme-toggle-thumb {
+  transform: translateX(24px);
 }
 
-.moon-icon {
-  border-radius: 50%;
-  box-shadow: inset -4px -2px 0 0 currentColor;
-}
-
-:root[data-theme="dark"] .sun-icon,
-:root[data-theme="light"] .moon-icon {
+.theme-moon-icon {
+  width: 18px;
+  height: 18px;
+  color: #D5DCF0;
+  position: absolute;
+  inset: 2px;
   opacity: 1;
-  transform: rotate(0deg) scale(1);
+  transform: scale(1) rotate(0deg);
+  transition:
+    opacity 250ms ease-in-out,
+    transform 250ms ease-in-out;
 }
 
-:root[data-theme="dark"] .moon-icon,
-:root[data-theme="light"] .sun-icon {
+:root[data-theme="light"] .theme-moon-icon {
   opacity: 0;
-  transform: rotate(90deg) scale(0.65);
+  transform: scale(0.6) rotate(-30deg);
+}
+
+.theme-knob-circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #2B2D2F;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(0.7);
+  transition:
+    opacity 250ms ease-in-out,
+    transform 250ms ease-in-out;
+}
+
+:root[data-theme="light"] .theme-knob-circle {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .nav-item {
@@ -1972,56 +2001,62 @@ body.cursor-hover .cursor-dot {
   color: var(--accent-gold);
 }
 
-/* Map placeholder */
-.map-placeholder-box {
+/* Google Map Embed Container */
+.map-container {
   width: 100%;
-  height: 250px;
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
+  max-width: 480px;
+  height: 200px;
+  background-color: var(--bg-primary);
+  border: 2px solid var(--accent-gold);
+  border-radius: 8px;
   position: relative;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-top: 1.25rem;
+  box-shadow: 0 0 15px rgba(214, 185, 140, 0.15);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
-.map-glow {
-  position: absolute;
-  width: 150px;
-  height: 150px;
-  background: var(--map-glow-bg);
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: pulseGlow 4s infinite ease-in-out;
+.map-container:hover {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 25px rgba(214, 185, 140, 0.35);
+  transform: translateY(-2px);
 }
 
-@keyframes pulseGlow {
-  0%,
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.3);
-    opacity: 1;
-  }
-}
-
-.map-lines {
-  position: absolute;
+.map-iframe {
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
+  border: 0;
+  display: block;
+  transition: filter 0.3s ease, opacity 0.3s ease;
 }
 
-.map-coords {
-  position: absolute;
-  bottom: 1.2rem;
-  left: 1.5rem;
-  color: var(--accent-gold-sec);
+/* Blended dark mode aesthetic */
+:root[data-theme="dark"] .map-iframe {
+  filter: invert(90%) hue-rotate(180deg) contrast(88%) brightness(92%) saturate(85%);
+  opacity: 0.88;
+}
+
+:root[data-theme="dark"] .map-container:hover .map-iframe {
+  opacity: 0.98;
+}
+
+/* Blended light mode aesthetic */
+:root[data-theme="light"] .map-iframe {
+  filter: contrast(95%) saturate(85%);
+  opacity: 0.92;
+}
+
+:root[data-theme="light"] .map-container {
+  border: 2px solid #d6b98c;
+  box-shadow: 0 0 15px rgba(214, 185, 140, 0.2);
+}
+
+:root[data-theme="light"] .map-container:hover {
+  border-color: #c4a26f;
+  box-shadow: 0 0 25px rgba(214, 185, 140, 0.4);
 }
 
 /* Contact Form UI */
