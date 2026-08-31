@@ -14,6 +14,7 @@ export class Animations {
     this.initScrollObservers();
     this.initHeroCanvas();
     this.initMagneticButtons();
+    this.initScrollIndicator();
   }
 
   /**
@@ -378,5 +379,108 @@ export class Animations {
     // Listen for DOM changes to bind new elements
     const observer = new MutationObserver(updateMagnetic);
     observer.observe(document.body, { childList: true, subtree: true });
+  }
+
+  /**
+   * Updates CSS variables for the rotating scroll indicator dynamically based on active theme
+   */
+  static updateScrollIndicatorTheme() {
+    const indicator = document.getElementById('scrollbar-indicator');
+    const disc = document.getElementById('scrollbar-indicator-disc');
+    const target = disc || indicator;
+    if (!target) return;
+
+    const isLight = document.documentElement.dataset.theme === 'light';
+
+    if (isLight) {
+      target.style.setProperty('--indicator-border', 'rgba(11, 22, 51, 0.15)');
+      target.style.setProperty('--indicator-bg', 'rgba(255, 255, 255, 0.72)');
+      target.style.setProperty('--indicator-dot', '#1d4ed8');
+      target.style.setProperty('--indicator-glow', 'rgba(29, 78, 216, 0.35)');
+    } else {
+      target.style.setProperty('--indicator-border', 'rgba(255, 255, 255, 0.18)');
+      target.style.setProperty('--indicator-bg', 'rgba(11, 22, 51, 0.65)');
+      target.style.setProperty('--indicator-dot', '#3b82f6');
+      target.style.setProperty('--indicator-glow', 'rgba(37, 99, 235, 0.55)');
+    }
+  }
+
+  /**
+   * 6. Premium Rotating Scroll Indicator (Fixed Bottom-Right)
+   * Velocity-based continuous rotation with smooth inertia damping and dynamic theme syncing.
+   */
+  static initScrollIndicator() {
+    const indicator = document.getElementById('scrollbar-indicator');
+    const disc = document.getElementById('scrollbar-indicator-disc');
+    if (!indicator || !disc) return;
+
+    // Apply initial dynamic theme variables
+    Animations.updateScrollIndicatorTheme();
+
+    // Listen to theme mutations on data-theme attribute
+    const themeObserver = new MutationObserver(() => {
+      Animations.updateScrollIndicatorTheme();
+    });
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    // Check reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    let previousScrollY = window.scrollY || window.pageYOffset || 0;
+    let currentRotation = 0;
+    let targetVelocity = 0;
+    let currentVelocity = 0;
+    let isRunning = false;
+
+    const MAX_VELOCITY = 22; // Clamped maximum degrees per animation frame
+    const ROTATION_FACTOR = 0.32; // Degree multiplier per pixel scrolled
+    const FRICTION = 0.90; // Natural inertia damping when scrolling slows/stops
+    const LERP_FACTOR = 0.18; // Velocity smoothing factor
+
+    const updatePhysics = () => {
+      // Smoothly interpolate current velocity towards target velocity
+      currentVelocity += (targetVelocity - currentVelocity) * LERP_FACTOR;
+      
+      // Gradually decay target velocity
+      targetVelocity *= FRICTION;
+
+      // Accumulate continuous rotational angle
+      currentRotation += currentVelocity;
+      disc.style.transform = `rotate(${currentRotation}deg)`;
+
+      // If motion is practically zero, sleep the animation frame to save CPU
+      if (Math.abs(currentVelocity) < 0.008 && Math.abs(targetVelocity) < 0.008) {
+        currentVelocity = 0;
+        targetVelocity = 0;
+        isRunning = false;
+        return;
+      }
+
+      requestAnimationFrame(updatePhysics);
+    };
+
+    const onScroll = () => {
+      const currentScrollY = window.scrollY || window.pageYOffset || 0;
+      const deltaY = currentScrollY - previousScrollY;
+      previousScrollY = currentScrollY;
+
+      // Calculate instantaneous rotational impulse (positive = clockwise for down, negative = anti-clockwise for up)
+      const rawVelocity = deltaY * ROTATION_FACTOR;
+      const clampedVelocity = Math.max(-MAX_VELOCITY, Math.min(MAX_VELOCITY, rawVelocity));
+
+      targetVelocity = clampedVelocity;
+
+      // Wake up the physics loop if idle
+      if (!isRunning) {
+        isRunning = true;
+        requestAnimationFrame(updatePhysics);
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
   }
 }

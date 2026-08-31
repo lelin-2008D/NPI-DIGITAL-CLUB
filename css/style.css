@@ -27,6 +27,11 @@
   --border-color: rgba(11, 22, 51, 0.1);
   --border-accent: rgba(29, 78, 216, 0.2);
 
+  --indicator-border: rgba(11, 22, 51, 0.15);
+  --indicator-bg: rgba(255, 255, 255, 0.72);
+  --indicator-dot: #1d4ed8;
+  --indicator-glow: rgba(29, 78, 216, 0.35);
+
   --hero-gradient: linear-gradient(
     135deg,
     #ffffff 0%,
@@ -112,6 +117,11 @@
 
   --border-color: rgba(255, 255, 255, 0.08);
   --border-accent: rgba(214, 185, 140, 0.25);
+
+  --indicator-border: rgba(255, 255, 255, 0.18);
+  --indicator-bg: rgba(11, 22, 51, 0.65);
+  --indicator-dot: #3b82f6;
+  --indicator-glow: rgba(37, 99, 235, 0.55);
 
   --hero-gradient: linear-gradient(
     135deg,
@@ -476,6 +486,83 @@ body.cursor-hover .cursor-dot {
 @media (pointer: coarse) {
   .custom-cursor {
     display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2.1 ROTATING SCROLL INDICATOR (Fixed Bottom-Right)
+   -------------------------------------------------------------------------- */
+.scrollbar-indicator {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 998;
+  pointer-events: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s ease;
+}
+
+.scrollbar-indicator-disc {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--indicator-border, rgba(255, 255, 255, 0.18));
+  background: var(--indicator-bg, rgba(11, 22, 51, 0.65));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0 10px var(--indicator-glow, rgba(37, 99, 235, 0.55));
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  transition:
+    border-color 300ms ease,
+    background-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.scrollbar-indicator-dot {
+  position: absolute;
+  top: 1.5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4.5px;
+  height: 4.5px;
+  border-radius: 50%;
+  background: var(--indicator-dot, #3b82f6);
+  box-shadow:
+    0 0 8px var(--indicator-glow, rgba(37, 99, 235, 0.55)),
+    0 0 16px var(--indicator-glow, rgba(37, 99, 235, 0.55));
+  transition:
+    background-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.scrollbar-indicator-disc::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--indicator-border, rgba(255, 255, 255, 0.18));
+  opacity: 0.55;
+  transition: background-color 300ms ease;
+}
+
+/* Hide while initial loading */
+body.loading .scrollbar-indicator {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media (max-width: 768px), (pointer: coarse) {
+  .scrollbar-indicator {
+    display: none !important;
   }
 }
 
@@ -2555,6 +2642,11 @@ body.cursor-hover .cursor-dot {
   .hero-logo-wrapper {
     animation: none !important;
     transform: none !important;
+  }
+
+  .scrollbar-indicator-disc {
+    transform: none !important;
+    will-change: auto !important;
   }
 
   body.loading #scroll-container,
