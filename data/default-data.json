@@ -1,8 +1,8 @@
 {
   "settings": {
     "siteTitle": "NPI Digital Club | Building Digital Innovators",
-    "metaDesc": "Where engineering meets creativity, innovation, technology, and leadership. Explore our projects, workshops, and team at Lalitpur's premier tech community.",
-    "metaKeywords": "NPI, Digital Club, Software Engineering, Design, AI, Lalitpur, Nepal, Web Development",
+    "metaDesc": "Where engineering meets creativity, innovation, technology, and leadership. Explore our projects, workshops, and team at Nepal Polytechnic Institute (NPI), Bharatpur, Chitwan.",
+    "metaKeywords": "NPI, Digital Club, Software Engineering, Design, AI, Bharatpur, Chitwan, Nepal, Web Development",
     "copyright": "Designed with ❤️ by NPI Digital Club",
     "theme": {
       "colorBg": "var(--bg-primary)",
@@ -21,12 +21,12 @@
     "canvasEnabled": true
   },
   "story": {
-    "badge": "OUR GENESIS",
+    "badge": "OUR STORY",
     "title": "A Legacy of Innovation and Digital Mastery",
     "mission": "To nurture high-caliber student developers, UI/UX designers, and hardware engineers, building a bridge between engineering studies and global industrial standards.",
     "vision": "To establish NPI Digital Club as a premier technology hub in Nepal, fostering original software craftsmanship and student-led startup ecosystems.",
     "purpose": "We offer a collaborative playground where code compiles, wireframes evolve, and real problems meet innovative engineering solutions through pure student ownership.",
-    "history": "Founded as a tight-knit circle of tech enthusiasts, the club has grown into Lalitpur's landmark student organization, launching digital platforms and mentoring hundreds of future developers.",
+    "history": "Founded as a student-led circle of tech enthusiasts, the club has grown into a landmark engineering community at NPI, launching digital platforms and mentoring future developers.",
     "image": "assets/images/story_hero.jpg",
     "stats": [
       { "id": "stat-1", "label": "Active Members", "number": "250", "suffix": "+" },
@@ -230,15 +230,15 @@
   ],
   "quote": {
     "text": "Software development is not just about typing syntax. It is the architectural discipline of materializing imagination through clean, elegant structures.",
-    "author": "NPI Digital Club Leadership"
+    "author": "NPI Digital Club Charter"
   },
   "contact": {
     "email": "info@npidigital.org",
-    "phone": "+977-1-5555555",
-    "address": "NPI Campus, Lalitpur, Nepal",
+    "phone": "+977-974-5998159",
+    "address": "NPI Campus, Bharatpur, Chitwan, Nepal",
     "mapCoords": {
-      "lat": "27.6715",
-      "lng": "85.3125"
+      "lat": "27.6895",
+      "lng": "84.4207"
     }
   }
 }

@@ -11,11 +11,11 @@
 
     <meta
       name="description"
-      content="Where engineering meets creativity, innovation, technology, and leadership. Explore our projects, workshops, and team at Lalitpur's premier tech community."
+      content="Where engineering meets creativity, innovation, technology, and leadership. Explore our projects, workshops, and team at Nepal Polytechnic Institute (NPI), Bharatpur, Chitwan."
     />
     <meta
       name="keywords"
-      content="NPI, Digital Club, Software Engineering, Design, AI, Lalitpur, Nepal, Web Development"
+      content="NPI, Digital Club, Software Engineering, Design, AI, Bharatpur, Chitwan, Nepal, Web Development"
     />
 
     <!-- Open Graph -->
@@ -25,7 +25,7 @@
     />
     <meta
       property="og:description"
-      content="Where engineering meets creativity, innovation, technology, and leadership."
+      content="Where engineering meets creativity, innovation, technology, and leadership. Explore our projects, workshops, and team at Nepal Polytechnic Institute (NPI), Bharatpur, Chitwan."
     />
     <meta property="og:type" content="website" />
 
@@ -48,6 +48,16 @@
           root.style.colorScheme = "dark";
         }
       })();
+
+      // Fallback preloader dismissal timer in case of network or module loading delays
+      window.setTimeout(() => {
+        const loader = document.getElementById("loader");
+        if (loader && !loader.classList.contains("fade-out")) {
+          loader.classList.add("complete", "fade-out");
+          document.body.classList.remove("loading");
+          document.body.classList.add("app-ready");
+        }
+      }, 2200);
     </script>
 
     <!-- Google Fonts -->
@@ -120,7 +130,7 @@
         <nav class="nav-links" id="nav-links" aria-label="Main Navigation">
           <a href="#hero" class="nav-item active" id="nav-link-home">Home</a>
           <a href="#story" class="nav-item" id="nav-link-story">Story</a>
-          <a href="#what-we-do" class="nav-item" id="nav-link-do">Craft</a>
+          <a href="#what-we-do" class="nav-item" id="nav-link-do">What We Do</a>
           <a href="#projects" class="nav-item" id="nav-link-projects"
             >Projects</a
           >
@@ -249,28 +259,35 @@
 
               <div class="story-p-group">
                 <div class="story-block">
-                  <h4 class="block-title space-grotesk">OUR MISSION</h4>
+                  <h3 class="block-title space-grotesk">OUR MISSION</h3>
                   <p class="inter" id="story-mission">
                     To nurture high-caliber student developers, UI/UX designers,
-                    and hardware engineers...
+                    and hardware engineers, building a bridge between engineering
+                    studies and global industrial standards.
                   </p>
                 </div>
                 <div class="story-block">
-                  <h4 class="block-title space-grotesk">OUR VISION</h4>
+                  <h3 class="block-title space-grotesk">OUR VISION</h3>
                   <p class="inter" id="story-vision">
-                    To establish NPI Digital Club as a premier technology hub...
+                    To establish NPI Digital Club as a premier technology hub in
+                    Nepal, fostering original software craftsmanship and student-led
+                    startup ecosystems.
                   </p>
                 </div>
                 <div class="story-block">
-                  <h4 class="block-title space-grotesk">OUR PURPOSE</h4>
+                  <h3 class="block-title space-grotesk">OUR PURPOSE</h3>
                   <p class="inter" id="story-purpose">
-                    We offer a collaborative playground where code compiles...
+                    We offer a collaborative playground where code compiles,
+                    wireframes evolve, and real problems meet innovative engineering
+                    solutions through pure student ownership.
                   </p>
                 </div>
                 <div class="story-block">
-                  <h4 class="block-title space-grotesk">OUR HISTORY</h4>
+                  <h3 class="block-title space-grotesk">OUR HISTORY</h3>
                   <p class="inter" id="story-history">
-                    Founded as a tight-knit circle of tech enthusiasts...
+                    Founded as a student-led circle of tech enthusiasts, the club
+                    has grown into a landmark engineering community at NPI,
+                    launching digital platforms and mentoring future developers.
                   </p>
                 </div>
               </div>
@@ -280,10 +297,13 @@
             <div class="story-img-wrapper reveal-mask-right">
               <div class="parallax-img-container">
                 <img
-                  src=""
+                  src="assets/images/story_hero.jpg"
                   alt="NPI Digital Club Editorial Artwork"
                   class="parallax-img"
                   id="story-image"
+                  loading="lazy"
+                  width="800"
+                  height="600"
                 />
                 <div class="parallax-overlay"></div>
               </div>
@@ -297,7 +317,7 @@
         <div class="section-container">
           <div class="section-header reveal-fade-up">
             <span class="editorial-badge space-grotesk" id="services-badge"
-              >OUR CRAFT</span
+              >WHAT WE DO</span
             >
             <h2 class="section-title cormorant" id="services-title">
               Shaping the Frontiers of Modern Technology
@@ -320,9 +340,9 @@
         <div class="section-container">
           <div class="section-header reveal-fade-up">
             <span class="editorial-badge space-grotesk">PORTFOLIO</span>
-            <h2 class="section-title cormorant">Featured Masterpieces</h2>
+            <h2 class="section-title cormorant">Featured Student Projects</h2>
             <p class="section-desc inter">
-              Explore premium projects engineered, coded, and designed by our
+              Explore projects engineered, coded, and designed by our
               students.
             </p>
           </div>
@@ -339,7 +359,7 @@
         <div class="section-container">
           <div class="section-header reveal-fade-up">
             <span class="editorial-badge space-grotesk">ROADMAP</span>
-            <h2 class="section-title cormorant">Chronicles of Engagement</h2>
+            <h2 class="section-title cormorant">Events & Milestones</h2>
             <p class="section-desc inter">
               Take a look at our events, workshops, pitch nights, and upcoming
               engineering benchmarks.
@@ -387,7 +407,7 @@
         <div class="section-container">
           <div class="section-header reveal-fade-up">
             <span class="editorial-badge space-grotesk">LEADERSHIP</span>
-            <h2 class="section-title cormorant">Executive Guild</h2>
+            <h2 class="section-title cormorant">Executive Committee</h2>
             <p class="section-desc inter">
               Meet the leaders of our creative, technological, and strategic
               engineering directions.
@@ -428,15 +448,15 @@
               role="tab"
               aria-selected="true"
             >
-              All snaps
+              All Photos
             </button>
             <button
               class="filter-btn"
-              data-filter="Hakathon"
+              data-filter="Workshops"
               role="tab"
               aria-selected="false"
             >
-              Hakathon
+              Workshops
             </button>
             <button
               class="filter-btn"
@@ -479,7 +499,7 @@
         <div class="section-container">
           <div class="section-header reveal-fade-up">
             <span class="editorial-badge space-grotesk">TESTIMONIALS</span>
-            <h2 class="section-title cormorant">Voice of the Circle</h2>
+            <h2 class="section-title cormorant">Member & Alumni Voices</h2>
             <p class="section-desc inter">
               Hear from the alumni, students, and mentors who shaped our shared
               community.
@@ -490,7 +510,26 @@
             class="testimonials-slider reveal-fade-up"
             id="testimonials-container"
           >
-            <!-- Dynamically loaded -->
+            <div class="testimonial-card reveal-fade-up">
+              <div class="quote-icon-bubble">“</div>
+              <blockquote class="testimonial-text inter">
+                NPI Digital Club gave me real project workflows that classes couldn't teach. The teamwork, the late-night debugging, and the mentorship shaped my career.
+              </blockquote>
+              <div class="testimonial-client">
+                <span class="client-name space-grotesk">Bibek Chaudhary</span>
+                <span class="client-role inter">CS Alumnus (Software Engineer at F1Soft)</span>
+              </div>
+            </div>
+            <div class="testimonial-card reveal-fade-up">
+              <div class="quote-icon-bubble">“</div>
+              <blockquote class="testimonial-text inter">
+                The Figma masterclasses and the hackathons completely transformed how I approach design and engineering. It's a gold mine for growth.
+              </blockquote>
+              <div class="testimonial-client">
+                <span class="client-name space-grotesk">Priyanka Shrestha</span>
+                <span class="client-role inter">B.E. Computer Science Student</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -507,7 +546,7 @@
             <cite
               class="quote-author space-grotesk accent-gold"
               id="quote-author"
-              >— NPI Digital Club Leadership</cite
+              >— NPI Digital Club Charter</cite
             >
           </div>
         </div>
@@ -520,7 +559,7 @@
             <!-- Contact Info -->
             <div class="contact-info-panel reveal-fade-up">
               <span class="editorial-badge space-grotesk">INQUIRIES</span>
-              <h2 class="section-title cormorant">Forge a Connection</h2>
+              <h2 class="section-title cormorant">Get in Touch</h2>
               <p class="contact-sub inter">
                 Have questions about memberships, sponsorship, or collaborating
                 on a development project? Drop us a message.
@@ -528,7 +567,7 @@
 
               <div class="contact-details-list">
                 <div class="contact-item">
-                  <span class="contact-icon">✉</span>
+                  <span class="contact-icon" aria-hidden="true">✉</span>
                   <div class="contact-item-text">
                     <span class="item-label space-grotesk">EMAIL US</span>
                     <a
@@ -540,11 +579,11 @@
                   </div>
                 </div>
                 <div class="contact-item">
-                  <span class="contact-icon">☏</span>
+                  <span class="contact-icon" aria-hidden="true">☏</span>
                   <div class="contact-item-text">
                     <span class="item-label space-grotesk">PHONE</span>
                     <a
-                      href="tel:+97715555555"
+                      href="tel:+9779745998159"
                       class="item-value inter"
                       id="contact-phone"
                       >+977-974-5998159</a
@@ -552,11 +591,11 @@
                   </div>
                 </div>
                 <div class="contact-item">
-                  <span class="contact-icon">⚲</span>
+                  <span class="contact-icon" aria-hidden="true">⚲</span>
                   <div class="contact-item-text">
-                    <span class="item-label space-grotesk">CAMPUS LOC</span>
+                    <span class="item-label space-grotesk">CAMPUS LOCATION</span>
                     <span class="item-value inter" id="contact-address"
-                      >NPI College, bharatpur, chitwan</span
+                      >NPI Campus, Bharatpur, Chitwan, Nepal</span
                     >
                   </div>
                 </div>
@@ -652,13 +691,15 @@
                   <button
                     type="submit"
                     class="btn btn-magnetic form-submit-btn"
+                    id="contact-submit-btn"
                   >
-                    <span class="btn-text">Transmit Message</span>
+                    <span class="btn-text">Send Message</span>
                   </button>
                 </div>
                 <div
                   class="form-response-msg space-grotesk"
                   id="form-feedback"
+                  aria-live="polite"
                 ></div>
               </form>
             </div>
@@ -673,7 +714,7 @@
             <div class="footer-brand">
               <span class="footer-logo cormorant">NPI DIGITAL</span>
               <p class="footer-moto inter">
-                Refining Lalitpur's technology frontiers through students,
+                Refining Bharatpur, Chitwan's technology frontiers through students,
                 community, and pure engineering.
               </p>
             </div>
@@ -691,28 +732,28 @@
               <span class="col-title space-grotesk">CONNECT</span>
               <div class="footer-links-list" id="footer-social-links">
                 <a
-                  href="https://www.instagram.com/npi_digital_club?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw=="
+                  href="https://www.instagram.com/npi_digital_club"
                   class="footer-link inter"
                   target="_blank"
                   rel="noopener"
                   >Instagram</a
                 >
                 <a
-                  href="https://www.tiktok.com/@npi.digital.club?is_from_webapp=1&sender_device=pc"
+                  href="https://www.tiktok.com/@npi.digital.club"
                   class="footer-link inter"
                   target="_blank"
                   rel="noopener"
-                  >Tik-Tok</a
+                  >TikTok</a
                 >
                 <a
-                  href="https://www.facebook.com/profile.php?id=61587278999438#"
+                  href="https://www.facebook.com/profile.php?id=61587278999438"
                   class="footer-link inter"
                   target="_blank"
                   rel="noopener"
                   >Facebook</a
                 >
                 <a
-                  href="mailto:npidigitalclub.official@gmail.com"
+                  href="mailto:info@npidigital.org"
                   class="footer-link inter"
                   >Email</a
                 >
@@ -764,11 +805,9 @@
             <p
               class="lightbox-caption space-grotesk"
               id="lightbox-caption-text"
-            >
-              Caption text here
-            </p>
+            ></p>
             <span class="lightbox-index space-mono" id="lightbox-index-counter"
-              >1 / 4</span
+              ></span
             >
           </div>
           <button
@@ -793,65 +832,79 @@
           >
             &times;
           </button>
-          <span class="editorial-badge space-grotesk">RSVP RESERVATION</span>
-          <h3 class="rsvp-title cormorant" id="rsvp-event-title">
-            Event Title
-          </h3>
-          <p class="rsvp-desc inter" id="rsvp-event-desc">
-            Secure your ticket for the event. Registered attendees will receive
-            calendar details and entry permissions via email.
-          </p>
+          <div id="rsvp-form-container">
+            <span class="editorial-badge space-grotesk">EVENT RSVP</span>
+            <h3 class="rsvp-title cormorant" id="rsvp-event-title">
+              Event Registration
+            </h3>
+            <p class="rsvp-desc inter" id="rsvp-event-desc">
+              Secure your attendance for this session. Registered attendees will receive
+              calendar details and session materials via email.
+            </p>
 
-          <form class="rsvp-form luxury-form" id="rsvp-form-element">
-            <input type="hidden" id="rsvp-event-id" name="eventId" />
+            <form class="rsvp-form luxury-form" id="rsvp-form-element">
+              <input type="hidden" id="rsvp-event-id" name="eventId" />
 
-            <div class="form-group">
-              <label for="rsvp-name" class="space-grotesk">FULL NAME</label>
-              <input
-                type="text"
-                id="rsvp-name"
-                name="name"
-                class="form-input"
-                placeholder="e.g. Sanjan Shrestha"
-                required
-              />
-              <span class="input-line"></span>
-            </div>
+              <div class="form-group">
+                <label for="rsvp-name" class="space-grotesk">FULL NAME</label>
+                <input
+                  type="text"
+                  id="rsvp-name"
+                  name="name"
+                  class="form-input"
+                  placeholder="e.g. Sanjan Shrestha"
+                  required
+                />
+                <span class="input-line"></span>
+              </div>
 
-            <div class="form-group">
-              <label for="rsvp-email" class="space-grotesk"
-                >EMAIL ADDRESS</label
-              >
-              <input
-                type="email"
-                id="rsvp-email"
-                name="email"
-                class="form-input"
-                placeholder="e.g. student@npi.edu.np"
-                required
-              />
-              <span class="input-line"></span>
-            </div>
+              <div class="form-group">
+                <label for="rsvp-email" class="space-grotesk"
+                  >EMAIL ADDRESS</label
+                >
+                <input
+                  type="email"
+                  id="rsvp-email"
+                  name="email"
+                  class="form-input"
+                  placeholder="e.g. student@npi.edu.np"
+                  required
+                />
+                <span class="input-line"></span>
+              </div>
 
-            <div class="form-group">
-              <label for="rsvp-roll" class="space-grotesk">ROLL NUMBER</label>
-              <input
-                type="text"
-                id="rsvp-roll"
-                name="roll"
-                class="form-input"
-                placeholder="e.g. CS-2024-42"
-                required
-              />
-              <span class="input-line"></span>
-            </div>
+              <div class="form-group">
+                <label for="rsvp-roll" class="space-grotesk">ROLL NUMBER / ID</label>
+                <input
+                  type="text"
+                  id="rsvp-roll"
+                  name="roll"
+                  class="form-input"
+                  placeholder="e.g. CS-2024-42"
+                  required
+                />
+                <span class="input-line"></span>
+              </div>
 
-            <div class="rsvp-action-row">
-              <button type="submit" class="btn btn-magnetic rsvp-submit-btn">
-                <span class="btn-text">Confirm Seat</span>
+              <div class="rsvp-action-row">
+                <button type="submit" class="btn btn-magnetic rsvp-submit-btn" id="rsvp-submit-btn">
+                  <span class="btn-text">Confirm Registration</span>
+                </button>
+              </div>
+            </form>
+          </div>
+          <div id="rsvp-success-container" class="rsvp-success-box" style="display: none;">
+            <div class="rsvp-success-icon">✓</div>
+            <h3 class="rsvp-title cormorant" id="rsvp-success-title">Registration Confirmed</h3>
+            <p class="rsvp-desc inter" id="rsvp-success-desc">
+              Thank you! Your seat has been reserved.
+            </p>
+            <div class="rsvp-action-row" style="margin-top: 1.5rem;">
+              <button type="button" class="btn btn-magnetic" id="rsvp-done-btn">
+                <span class="btn-text">Done</span>
               </button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </dialog>

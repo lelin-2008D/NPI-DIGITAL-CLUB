@@ -5,6 +5,7 @@
  */
 
 import { Storage } from './storage.js';
+import { SupabaseContentService } from './supabaseContentService.js';
 
 export class UI {
   static galleryItems = [];
@@ -332,10 +333,17 @@ export class UI {
     const modal = document.getElementById('rsvp-modal');
     const titleEl = document.getElementById('rsvp-event-title');
     const idInput = document.getElementById('rsvp-event-id');
+    const formContainer = document.getElementById('rsvp-form-container');
+    const successContainer = document.getElementById('rsvp-success-container');
+    const form = document.getElementById('rsvp-form-element');
 
     if (!modal) return;
-    if (titleEl) titleEl.textContent = eventTitle;
-    if (idInput) idInput.value = eventId;
+    if (form) form.reset();
+    if (formContainer) formContainer.style.display = 'block';
+    if (successContainer) successContainer.style.display = 'none';
+
+    if (titleEl) titleEl.textContent = eventTitle || 'Event Registration';
+    if (idInput) idInput.value = eventId || '';
 
     modal.showModal();
   }
@@ -343,56 +351,126 @@ export class UI {
   static initRSVPForm() {
     const modal = document.getElementById('rsvp-modal');
     const closeBtn = document.getElementById('rsvp-close-btn');
+    const doneBtn = document.getElementById('rsvp-done-btn');
     const form = document.getElementById('rsvp-form-element');
+    const formContainer = document.getElementById('rsvp-form-container');
+    const successContainer = document.getElementById('rsvp-success-container');
+    const successDesc = document.getElementById('rsvp-success-desc');
+    const submitBtn = document.getElementById('rsvp-submit-btn');
 
     if (!modal) return;
 
-    closeBtn?.addEventListener('click', () => modal.close());
+    const closeModal = () => {
+      modal.close();
+      if (form) form.reset();
+      if (formContainer) formContainer.style.display = 'block';
+      if (successContainer) successContainer.style.display = 'none';
+    };
+
+    closeBtn?.addEventListener('click', closeModal);
+    doneBtn?.addEventListener('click', closeModal);
     modal.addEventListener('click', (e) => {
       if (e.target === modal || e.target.classList.contains('rsvp-modal-overlay')) {
-        modal.close();
+        closeModal();
       }
     });
 
     if (form) {
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        // Capture details for simulated backend log
-        const eventTitle = document.getElementById('rsvp-event-title').textContent;
-        const name = document.getElementById('rsvp-name').value;
-        const email = document.getElementById('rsvp-email').value;
 
-        alert(`Transmission complete!\nThank you ${name}.\nYour seat for [${eventTitle}] has been confirmed. Verification details sent to ${email}.`);
-        
-        form.reset();
-        modal.close();
+        const name = document.getElementById('rsvp-name').value.trim();
+        const email = document.getElementById('rsvp-email').value.trim();
+        const roll = document.getElementById('rsvp-roll').value.trim();
+        const eventId = document.getElementById('rsvp-event-id').value;
+        const eventTitle = document.getElementById('rsvp-event-title').textContent;
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+          alert('Please enter a valid email address.');
+          return;
+        }
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.querySelector('.btn-text').textContent = 'Confirming...';
+        }
+
+        try {
+          if (SupabaseContentService.isConfigured()) {
+            await SupabaseContentService.submitRSVP({ eventId, name, email, roll });
+          } else {
+            await new Promise((resolve) => setTimeout(resolve, 600));
+          }
+
+          if (formContainer) formContainer.style.display = 'none';
+          if (successContainer) successContainer.style.display = 'block';
+          if (successDesc) {
+            successDesc.textContent = `Thank you, ${name}! Your seat for "${eventTitle}" is confirmed. Verification and calendar details will be sent to ${email}.`;
+          }
+        } catch (error) {
+          alert(error.message || 'Unable to confirm your RSVP. Please try again.');
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.querySelector('.btn-text').textContent = 'Confirm Registration';
+          }
+        }
       });
     }
   }
 
   /**
-   * 7. Luxury Contact Form Submissions
+   * 7. Contact Form Submissions
    */
   static initContactForm() {
     const form = document.getElementById('contact-form-element');
     const feedback = document.getElementById('form-feedback');
+    const submitBtn = document.getElementById('contact-submit-btn');
     if (!form || !feedback) return;
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // Show luxury loader placeholder message
-      feedback.className = 'form-response-msg';
-      feedback.textContent = 'Transmitting data packets...';
+      const name = document.getElementById('contact-name').value.trim();
+      const email = document.getElementById('contact-email-input').value.trim();
+      const subject = document.getElementById('contact-subject').value.trim();
+      const message = document.getElementById('contact-message').value.trim();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      // Simulate a network dispatch latency
-      setTimeout(() => {
-        const name = document.getElementById('contact-name').value;
+      if (!emailPattern.test(email)) {
+        feedback.className = 'form-response-msg error';
+        feedback.textContent = 'Please provide a valid email address.';
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.querySelector('.btn-text').textContent = 'Sending...';
+      }
+
+      feedback.className = 'form-response-msg';
+      feedback.textContent = 'Sending your message...';
+
+      try {
+        if (SupabaseContentService.isConfigured()) {
+          await SupabaseContentService.submitContact({ name, email, subject, message });
+        } else {
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+        }
+
         feedback.className = 'form-response-msg success';
-        feedback.textContent = `Packet accepted! Thank you, ${name}. We will follow up.`;
+        feedback.textContent = `Thank you, ${name}! Your message has been sent successfully. We will follow up shortly.`;
         form.reset();
-      }, 1500);
+      } catch (error) {
+        feedback.className = 'form-response-msg error';
+        feedback.textContent = error.message || 'Unable to send your message. Please try again.';
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.querySelector('.btn-text').textContent = 'Send Message';
+        }
+      }
     });
   }
 }

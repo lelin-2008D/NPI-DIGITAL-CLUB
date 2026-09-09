@@ -2468,6 +2468,32 @@ body.loading .scrollbar-indicator {
   width: 100%;
 }
 
+.rsvp-success-box {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.rsvp-success-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--success-color);
+  color: #ffffff;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem auto;
+}
+
+button:disabled,
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 /* --------------------------------------------------------------------------
    18. ANIMATION UTILITIES (60FPS REVEAL SYSTEMS)
    -------------------------------------------------------------------------- */

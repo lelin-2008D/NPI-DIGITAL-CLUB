@@ -5,16 +5,17 @@
  */
 
 import { Storage } from '../js/storage.js';
+import { SupabaseContentService } from '../js/supabaseContentService.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // 1. Authenticate local DB
-  const db = await Storage.initialize();
+  // 1. Initialize content storage. Admin loads all rows that RLS permits.
+  const db = await Storage.initialize({ includeUnpublished: true });
 
   // 2. Setup Cursor
   initAdminCursor();
 
   // 3. Setup Login Flow
-  initAuthentication();
+  await initAuthentication();
 
   // 4. Setup Section Forms Populate
   populateSettingsForms(db);
@@ -35,15 +36,29 @@ document.addEventListener('DOMContentLoaded', async () => {
 /* ==========================================================================
    AUTHENTICATION SYSTEM
    ========================================================================== */
-function initAuthentication() {
+async function initAuthentication() {
   const loginScreen = document.getElementById('login-screen');
   const adminApp = document.getElementById('admin-app');
   const loginForm = document.getElementById('login-form');
   const feedback = document.getElementById('login-feedback');
   const logoutBtn = document.getElementById('logout-btn');
 
-  const checkAuth = () => {
-    const isLogged = sessionStorage.getItem('admin_logged') === 'true' || localStorage.getItem('admin_logged_perm') === 'true';
+  const checkAuth = async () => {
+    let isLogged = false;
+
+    if (!SupabaseContentService.isConfigured()) {
+      loginScreen.classList.remove('hidden');
+      adminApp.style.display = 'none';
+      return;
+    }
+
+    try {
+      const { role } = await SupabaseContentService.getSession();
+      isLogged = role === 'admin';
+    } catch (error) {
+      console.error('Failed to verify Supabase admin session:', error);
+    }
+
     if (isLogged) {
       loginScreen.classList.add('hidden');
       adminApp.style.display = 'flex';
@@ -55,36 +70,36 @@ function initAuthentication() {
   };
 
   if (loginForm) {
-    loginForm.addEventListener('submit', (e) => {
+    loginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const email = document.getElementById('login-email').value;
       const pass = document.getElementById('login-password').value;
       const remember = document.getElementById('remember-me').checked;
+      feedback.textContent = '';
 
-      // Demo login validation
-      if (email === 'admin@npidigital.org' && pass === 'digitalpass') {
-        feedback.textContent = '';
-        if (remember) {
-          localStorage.setItem('admin_logged_perm', 'true');
-        } else {
-          sessionStorage.setItem('admin_logged', 'true');
+      if (SupabaseContentService.isConfigured()) {
+        try {
+          await SupabaseContentService.signIn(email, pass);
+          window.location.reload();
+        } catch (error) {
+          feedback.textContent = error.message || 'Invalid credentials.';
         }
-        checkAuth();
       } else {
-        feedback.textContent = 'Invalid credentials. Password hint: digitalpass';
+        feedback.textContent = 'Supabase is not configured. Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.';
       }
     });
   }
 
   if (logoutBtn) {
-    logoutBtn.addEventListener('click', () => {
+    logoutBtn.addEventListener('click', async () => {
+      await SupabaseContentService.signOut();
       sessionStorage.removeItem('admin_logged');
       localStorage.removeItem('admin_logged_perm');
-      checkAuth();
+      await checkAuth();
     });
   }
 
-  checkAuth();
+  await checkAuth();
 }
 
 /* ==========================================================================
@@ -235,31 +250,31 @@ function initGeneralListeners() {
   const db = Storage.getData();
 
   // site settings submit
-  document.getElementById('form-site-settings').addEventListener('submit', (e) => {
+  document.getElementById('form-site-settings').addEventListener('submit', async (e) => {
     e.preventDefault();
     db.settings.siteTitle = document.getElementById('setting-site-title').value;
     db.settings.metaDesc = document.getElementById('setting-meta-desc').value;
     db.settings.metaKeywords = document.getElementById('setting-meta-keys').value;
     db.settings.copyright = document.getElementById('setting-copyright').value;
-    Storage.saveData(db);
+    await Storage.saveData(db);
     alert('Core SEO Settings Saved!');
     updatePreview();
   });
 
   // Hero submit
-  document.getElementById('form-hero-settings').addEventListener('submit', (e) => {
+  document.getElementById('form-hero-settings').addEventListener('submit', async (e) => {
     e.preventDefault();
     db.hero.title = document.getElementById('hero-title-input').value;
     db.hero.subtitle = document.getElementById('hero-subtitle-input').value;
     db.hero.description = document.getElementById('hero-desc-input').value;
     db.hero.exploreBtn = document.getElementById('hero-btn-input').value;
-    Storage.saveData(db);
+    await Storage.saveData(db);
     alert('Hero Settings Committed!');
     updatePreview();
   });
 
   // Story submit
-  document.getElementById('form-story-settings').addEventListener('submit', (e) => {
+  document.getElementById('form-story-settings').addEventListener('submit', async (e) => {
     e.preventDefault();
     db.story.badge = document.getElementById('story-badge-input').value;
     db.story.title = document.getElementById('story-title-input').value;
@@ -268,24 +283,24 @@ function initGeneralListeners() {
     db.story.purpose = document.getElementById('story-purpose-input').value;
     db.story.history = document.getElementById('story-history-input').value;
     db.story.image = document.getElementById('story-image-input').value;
-    Storage.saveData(db);
+    await Storage.saveData(db);
     alert('Genesis Story Settings Saved!');
     updatePreview();
   });
 
   // Services Header submit
-  document.getElementById('form-services-settings').addEventListener('submit', (e) => {
+  document.getElementById('form-services-settings').addEventListener('submit', async (e) => {
     e.preventDefault();
     db.whatWeDo.badge = document.getElementById('services-badge-input').value;
     db.whatWeDo.title = document.getElementById('services-title-input').value;
     db.whatWeDo.description = document.getElementById('services-desc-input').value;
-    Storage.saveData(db);
+    await Storage.saveData(db);
     alert('Services Header settings committed!');
     updatePreview();
   });
 
   // Contact submit
-  document.getElementById('form-contact-settings').addEventListener('submit', (e) => {
+  document.getElementById('form-contact-settings').addEventListener('submit', async (e) => {
     e.preventDefault();
     db.contact.email = document.getElementById('contact-email-input').value;
     db.contact.phone = document.getElementById('contact-phone-input').value;
@@ -300,7 +315,7 @@ function initGeneralListeners() {
       author: document.getElementById('quote-author-input').value
     };
 
-    Storage.saveData(db);
+    await Storage.saveData(db);
     alert('Contact Details & Quote elements saved!');
     updatePreview();
   });
@@ -325,9 +340,9 @@ function initGeneralListeners() {
     const fileReader = new FileReader();
     if (!e.target.files[0]) return;
     
-    fileReader.onload = function (fileLoadedEvent) {
+    fileReader.onload = async function (fileLoadedEvent) {
       const textFromFileLoaded = fileLoadedEvent.target.result;
-      const success = Storage.importJSON(textFromFileLoaded);
+      const success = await Storage.importJSON(textFromFileLoaded);
       if (success) {
         alert('Database snapshot loaded successfully! Reloading...');
         window.location.reload();
@@ -691,7 +706,7 @@ function initCRUDFormSubmit() {
   const form = document.getElementById('crud-form-element');
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const db = Storage.getData();
     
@@ -759,7 +774,7 @@ function initCRUDFormSubmit() {
     }
 
     // Save database
-    Storage.saveData(db);
+    await Storage.saveData(db);
 
     // Refresh display
     renderAllTables();
@@ -771,7 +786,7 @@ function initCRUDFormSubmit() {
 }
 
 // Expose deleteEntity to global window scope
-window.deleteEntity = function(type, id) {
+window.deleteEntity = async function(type, id) {
   if (confirm(`Are you sure you want to delete this ${type}?`)) {
     const db = Storage.getData();
     let targetArray = null;
@@ -792,7 +807,7 @@ window.deleteEntity = function(type, id) {
     else if (type === 'team') db.team = filtered;
     else if (type === 'testimonial') db.testimonials = filtered;
 
-    Storage.saveData(db);
+    await Storage.saveData(db);
     renderAllTables();
     updateDashboardCount(db);
     updatePreview();
@@ -800,7 +815,7 @@ window.deleteEntity = function(type, id) {
 };
 
 // Expose reorderEntity to global window scope
-window.reorderEntity = function(type, index, direction) {
+window.reorderEntity = async function(type, index, direction) {
   const db = Storage.getData();
   let targetArray = null;
 
@@ -821,7 +836,7 @@ window.reorderEntity = function(type, index, direction) {
   targetArray[index] = targetArray[targetIndex];
   targetArray[targetIndex] = temp;
 
-  Storage.saveData(db);
+  await Storage.saveData(db);
   renderAllTables();
   updatePreview();
 };

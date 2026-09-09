@@ -1,17 +1,32 @@
+import { SupabaseContentService } from './supabaseContentService.js';
+
 /**
  * Storage Class
- * Handles reading/writing the site database from localStorage.
- * Architects the storage layer so it can be easily replaced by REST API, Supabase, Firebase etc.
+ * Handles reading/writing the site database from Supabase when configured,
+ * with localStorage/default JSON as the development fallback.
  */
 export class Storage {
   static STORAGE_KEY = 'npi_digital_db';
-  static DEFAULT_DATA_PATH = './data/default-data.json';
+  static DEFAULT_DATA_PATH = new URL('../data/default-data.json', import.meta.url).href;
+  static REMOTE_ENABLED = SupabaseContentService.isConfigured();
 
   /**
    * Initialize the database. If localStorage is empty, fetch the default-data.json file.
    * @returns {Promise<Object>} The database object
    */
-  static async initialize() {
+  static async initialize(options = {}) {
+    if (this.REMOTE_ENABLED) {
+      try {
+        const remoteData = await SupabaseContentService.fetchSiteData(options);
+        if (remoteData) {
+          this.saveLocalData(remoteData);
+          return remoteData;
+        }
+      } catch (error) {
+        console.error('Error loading Supabase content, falling back to local data:', error);
+      }
+    }
+
     if (!this.isInitialized()) {
       try {
         const response = await fetch(this.DEFAULT_DATA_PATH);
@@ -19,7 +34,7 @@ export class Storage {
           throw new Error(`Failed to fetch default data: ${response.statusText}`);
         }
         const defaultData = await response.json();
-        this.saveData(defaultData);
+        this.saveLocalData(defaultData);
         console.log('Database initialized with default data.');
         return defaultData;
       } catch (error) {
@@ -34,7 +49,7 @@ export class Storage {
           team: [],
           gallery: []
         };
-        this.saveData(fallback);
+        this.saveLocalData(fallback);
         return fallback;
       }
     }
@@ -59,13 +74,24 @@ export class Storage {
   }
 
   /**
+   * Saves data to the browser cache without syncing to Supabase.
+   * @param {Object} data - The DB object to cache
+   */
+  static saveLocalData(data) {
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
+    window.dispatchEvent(new Event('storage'));
+  }
+
+  /**
    * Saves the entire database object to localStorage
    * @param {Object} data - The DB object to save
    */
-  static saveData(data) {
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
-    // Trigger storage event manually for same-window updates
-    window.dispatchEvent(new Event('storage'));
+  static async saveData(data) {
+    if (this.REMOTE_ENABLED) {
+      await SupabaseContentService.saveSiteData(data);
+    }
+
+    this.saveLocalData(data);
   }
 
   /**
@@ -74,7 +100,14 @@ export class Storage {
    */
   static async resetData() {
     localStorage.removeItem(this.STORAGE_KEY);
-    return await this.initialize();
+    const response = await fetch(this.DEFAULT_DATA_PATH);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch default data: ${response.statusText}`);
+    }
+
+    const defaultData = await response.json();
+    await this.saveData(defaultData);
+    return defaultData;
   }
 
   /**
@@ -90,11 +123,11 @@ export class Storage {
    * @param {string} jsonString - The JSON string representing database
    * @returns {boolean} True if successful, false otherwise
    */
-  static importJSON(jsonString) {
+  static async importJSON(jsonString) {
     try {
       const data = JSON.parse(jsonString);
       if (data && typeof data === 'object' && data.settings && data.hero) {
-        this.saveData(data);
+        await this.saveData(data);
         return true;
       }
       throw new Error('Invalid database schema structure');

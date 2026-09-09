@@ -125,7 +125,7 @@ export class ContentManager {
     const displayList = projects || [];
     
     if (displayList.length === 0) {
-      container.innerHTML = '<p class="inter text-center">No projects found. Create one in the dashboard.</p>';
+      container.innerHTML = '<p class="inter text-center" style="padding: 2rem 0; color: var(--text-muted);">New project showcases are currently being curated. Check back soon!</p>';
       return;
     }
 
@@ -146,7 +146,7 @@ export class ContentManager {
             <h3 class="project-title cormorant">${project.title}</h3>
             <p class="project-desc inter">${project.desc}</p>
             <a href="${project.link || '#'}" class="project-link-btn btn-magnetic" target="_blank" rel="noopener">
-              <span class="btn-text">EXPLORE SOURCE CODE ⟶</span>
+              <span class="btn-text">VIEW PROJECT / REPOSITORY ⟶</span>
             </a>
           </div>
         </div>
@@ -166,7 +166,7 @@ export class ContentManager {
     const events = timeline || [];
 
     if (events.length === 0) {
-      track.innerHTML = '<p class="inter">No roadmap milestones scheduled.</p>';
+      track.innerHTML = '<p class="inter" style="padding: 2rem 0; color: var(--text-muted);">The event roadmap is updating for the upcoming session.</p>';
       return;
     }
 
@@ -223,7 +223,7 @@ export class ContentManager {
     const members = team || [];
 
     if (members.length === 0) {
-      container.innerHTML = '<p class="inter">No committee members configured.</p>';
+      container.innerHTML = '<p class="inter" style="padding: 2rem 0; color: var(--text-muted);">Executive committee directory is currently updating.</p>';
       return;
     }
 
@@ -237,9 +237,9 @@ export class ContentManager {
               <span class="team-role-title space-grotesk">${member.role}</span>
               <p class="team-bio-txt inter">${member.bio}</p>
               <div class="team-social-links">
-                <a href="${member.github || '#'}" class="team-social-link btn-magnetic" target="_blank" rel="noopener"><span class="btn-text">GH</span></a>
-                <a href="${member.linkedin || '#'}" class="team-social-link btn-magnetic" target="_blank" rel="noopener"><span class="btn-text">LN</span></a>
-                <a href="mailto:${member.email || ''}" class="team-social-link btn-magnetic"><span class="btn-text">EM</span></a>
+                <a href="${member.github || '#'}" class="team-social-link btn-magnetic" target="_blank" rel="noopener" aria-label="GitHub Profile"><span class="btn-text">GH</span></a>
+                <a href="${member.linkedin || '#'}" class="team-social-link btn-magnetic" target="_blank" rel="noopener" aria-label="LinkedIn Profile"><span class="btn-text">LN</span></a>
+                <a href="mailto:${member.email || ''}" class="team-social-link btn-magnetic" aria-label="Email Member"><span class="btn-text">EM</span></a>
               </div>
             </div>
           </div>
@@ -260,7 +260,7 @@ export class ContentManager {
     const items = gallery || [];
 
     if (items.length === 0) {
-      container.innerHTML = '<p class="inter">Gallery folder empty.</p>';
+      container.innerHTML = '<p class="inter" style="padding: 2rem 0; color: var(--text-muted);">Photo gallery is updating with recent event highlights.</p>';
       return;
     }
 
@@ -292,7 +292,7 @@ export class ContentManager {
     const reviews = testimonials || [];
 
     if (reviews.length === 0) {
-      container.innerHTML = '<p class="inter">No testimonials recorded yet.</p>';
+      container.innerHTML = '<p class="inter" style="padding: 2rem 0; color: var(--text-muted);">Community stories and testimonials are updating.</p>';
       return;
     }
 

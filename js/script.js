@@ -8,26 +8,47 @@ import { ContentManager } from './contentManager.js';
 import { Animations } from './animations.js';
 import { UI } from './ui.js';
 
-document.addEventListener('DOMContentLoaded', async () => {
-  // 1. Initialize local database (will fetch default JSON if empty)
-  const db = await Storage.initialize();
+const startApp = async () => {
+  // 1. Initialize performance animations and preloader immediately
+  try {
+    Animations.init();
+  } catch (e) {
+    console.error('Animations init error:', e);
+  }
 
-  // 2. Render all content layers onto the DOM dynamically
-  ContentManager.renderAll(db);
+  // 2. Initialize database (Supabase or default local JSON)
+  try {
+    const db = await Storage.initialize();
+    if (db) {
+      ContentManager.renderAll(db);
+    }
+  } catch (e) {
+    console.error('Storage/ContentManager init error:', e);
+  }
 
-  // 3. Bind UI interactions (clicks, lightbox, form capture, drag timeline)
-  UI.init();
+  // 3. Bind UI interactions
+  try {
+    UI.init();
+  } catch (e) {
+    console.error('UI init error:', e);
+  }
 
-  // 4. Initialize performance animations (lerp cursor, scroll triggers, canvas)
-  Animations.init();
-
-  // 5. Live update listener
-  // Whenever localStorage changes (e.g. from the Admin Dashboard in another tab or iframe), re-render content
+  // 4. Live update listener
   window.addEventListener('storage', () => {
-    const updatedDb = Storage.getData();
-    if (updatedDb) {
-      console.log('Local storage update detected. Re-rendering sections...');
-      ContentManager.renderAll(updatedDb);
+    try {
+      const updatedDb = Storage.getData();
+      if (updatedDb) {
+        console.log('Local storage update detected. Re-rendering sections...');
+        ContentManager.renderAll(updatedDb);
+      }
+    } catch (e) {
+      console.error('Storage update re-render error:', e);
     }
   });
-});
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', startApp);
+} else {
+  startApp();
+}

@@ -32,8 +32,8 @@ export class Animations {
     let complete = false;
     let frameId = null;
     const startedAt = performance.now();
-    const minimumVisibleMs = reducedMotion ? 120 : 520;
-    const hardFallbackMs = 3500;
+    const minimumVisibleMs = reducedMotion ? 100 : 400;
+    const hardFallbackMs = 1200;
 
     const setProgress = (value) => {
       progress = Math.max(progress, Math.min(100, value));
@@ -48,7 +48,7 @@ export class Animations {
       setProgress(100);
       loader.classList.add('complete');
 
-      const revealDelay = reducedMotion ? 40 : 260;
+      const revealDelay = reducedMotion ? 30 : 200;
       window.setTimeout(() => {
         loader.classList.add('fade-out');
         document.body.classList.remove('loading');
@@ -58,27 +58,30 @@ export class Animations {
     };
 
     const waitForLogo = new Promise((resolve) => {
-      if (!logo || logo.complete) {
+      if (!logo || logo.complete || (logo.naturalWidth && logo.naturalWidth > 0)) {
         resolve();
         return;
       }
       logo.addEventListener('load', resolve, { once: true });
       logo.addEventListener('error', resolve, { once: true });
+      // Fallback in case SVG load event is suppressed
+      setTimeout(resolve, 300);
     });
 
     const waitForWindow = new Promise((resolve) => {
-      if (document.readyState === 'complete') {
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
         resolve();
         return;
       }
       window.addEventListener('load', resolve, { once: true });
+      document.addEventListener('DOMContentLoaded', resolve, { once: true });
     });
 
     const tick = () => {
       if (complete) return;
       const elapsed = performance.now() - startedAt;
-      const eased = 1 - Math.exp(-elapsed / 720);
-      setProgress(Math.min(92, eased * 92));
+      const eased = 1 - Math.exp(-elapsed / 600);
+      setProgress(Math.min(95, eased * 95));
       frameId = requestAnimationFrame(tick);
     };
 
