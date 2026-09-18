@@ -276,7 +276,7 @@ export class SupabaseContentService {
 
   static async getSession() {
     if (!this.isConfigured()) return { session: null, user: null, role: null };
-    const supabase = requireClient();
+    const supabase = await requireClient();
     const { data, error } = await supabase.auth.getSession();
     if (error) throw error;
 
